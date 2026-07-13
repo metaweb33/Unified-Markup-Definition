@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moteur OMEGA - Visualiseur UMD & UCSS unifié</title>
+  <!-- Tailwind CSS pour une interface moderne et réactive -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts pour simuler les polices d'écriture et de code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Dyslexic&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-code {
+      font-family: 'Fira Code', monospace;
+    }
+    .font-dyslexic {
+      font-family: 'Comic Sans MS', 'OpenDyslexic', sans-serif !important;
+    }
+    
+    /* Variables CSS par défaut (Thème Auteur) */
+    :root {
+      --umd-font: 'Lora', serif;
+      --umd-color-text: #1e293b;
+      --umd-color-bg: #f8fafc;
+      --umd-font-weight-b: 700;
+      --umd-font-style-i: italic;
+      --umd-decoration-u: underline;
+      --umd-decoration-uu: underline double;
+    }
+
+    /* Le conteneur du livre hérite des variables du thème actif */
+    #umd-rendered-viewport {
+      font-family: var(--umd-font);
+      color: var(--umd-color-text);
+      background-color: var(--umd-color-bg);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Token sémantique cliquable et protégé */
+    .entity-token {
+      user-select: none;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col overflow-hidden">
+
+  <!-- En-tête de l'application -->
+  <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between shrink-0">
+    <div class="flex items-center gap-3">
+      <!-- Icône OMEGA -->
+      <svg class="w-8 h-8 text-indigo-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM12 6C15.3137 6 18 8.68629 18 12C18 14.1587 16.8588 16.0514 15.1437 17.1187C14.2831 15.1953 12.8943 14 12 14C11.1057 14 9.71692 15.1953 8.85635 17.1187C7.14116 16.0514 6 14.1587 6 12C6 8.68629 8.68629 6 12 6Z" fill="currentColor"/>
+      </svg>
+      <div>
+        <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+          Moteur OMEGA <span class="text-xs bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded-full font-mono">v3.0-Production</span>
+        </h1>
+        <p class="text-xs text-slate-400">Compilateur Sémantique & Visualiseur Double-Mapping (&& / &&& / .ucss)</p>
+      </div>
+    </div>
+    
+    <!-- Profils du lecteur et bouton d'action -->
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+        <span class="text-xs text-slate-400">Profil Lecteur :</span>
+        <select id="reader-theme-selector" class="bg-transparent text-xs text-slate-200 font-semibold focus:outline-none cursor-pointer">
+          <option value="author" class="bg-slate-900">🎨 Thème de l'Auteur</option>
+          <option value="night" class="bg-slate-900">🌙 Mode Nuit Épuré</option>
+          <option value="dyslexic" class="bg-slate-900">📘 Aide Dyslexique</option>
+          <option value="high_contrast" class="bg-slate-900">👁️ Contraste Élevé</option>
+        </select>
+      </div>
+      
+      <!-- Synthèse vocale Alexandria -->
+      <button id="btn-tts-play" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg transition duration-200">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+        </svg>
+        Écouter (Alexandria TTS)
+      </button>
+    </div>
+  </header>
+
+  <!-- Grille de travail principale -->
+  <main class="flex-1 flex overflow-hidden">
+    
+    <!-- PANNEAU DE GAUCHE : Code Source et Styles Sémantiques -->
+    <section class="w-1/2 border-r border-slate-800 flex flex-col h-full bg-slate-900/40">
+      
+      <!-- Onglets de code -->
+      <div class="flex border-b border-slate-800 bg-slate-950/50 shrink-0">
+        <button id="tab-umd" class="px-6 py-3 text-xs font-bold border-b-2 border-indigo-500 text-indigo-400 bg-slate-900 flex items-center gap-2">
+          📝 SOURCE UMD (.umd)
+        </button>
+        <button id="tab-ucss" class="px-6 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 flex items-center gap-2 transition">
+          🎨 STYLE SÉMANTIQUE (.ucss)
+        </button>
+      </div>
+
+      <!-- Espaces d'écriture -->
+      <div class="flex-1 relative overflow-hidden">
+        
+        <!-- Éditeur UMD -->
+        <div id="editor-umd-container" class="absolute inset-0 flex flex-col">
+          <div class="bg-slate-900/60 px-4 py-2 text-[10px] text-slate-500 font-mono flex items-center justify-between border-b border-slate-800/60">
+            <span>UNIFICATION DES BALISES : && (EN-LIGNE & BLOCS) - &&& (SECTION GLOBAL)</span>
+            <span class="text-indigo-400">Édition en direct</span>
+          </div>
+          <textarea id="umd-source" class="flex-1 w-full p-6 bg-slate-950/80 text-slate-300 font-code text-sm leading-relaxed focus:outline-none focus:ring-1 focus:ring-indigo-500 resize-none overflow-y-auto" spellcheck="false"></textarea>
+        </div>
+
+        <!-- Éditeur UCSS -->
+        <div id="editor-ucss-container" class="absolute inset-0 flex flex-col hidden">
+          <div class="bg-slate-900/60 px-4 py-2 text-[10px] text-slate-500 font-mono flex items-center justify-between border-b border-slate-800/60">
+            <span>SÉLECTEURS SEMANTIQUES SANS COMPLEXITÉ WEB CSS</span>
+            <span class="text-amber-400">Règles pures</span>
+          </div>
+          <textarea id="ucss-source" class="flex-1 w-full p-6 bg-slate-950/80 text-amber-300/90 font-code text-sm leading-relaxed focus:outline-none focus:ring-1 focus:ring-amber-500 resize-none overflow-y-auto" spellcheck="false"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Barre d'état -->
+      <footer class="bg-slate-950 border-t border-slate-800 px-4 py-2.5 flex items-center justify-between text-xs text-slate-400 shrink-0 font-mono">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Compilateur OMEGA synchrone actif</span>
+        </div>
+        <div id="compiler-stats">
+          Taille : 0 octets
+        </div>
+      </footer>
+    </section>
+
+    <!-- PANNEAU DE DROITE : Rendu visuel et structure de compilation -->
+    <section class="w-1/2 flex flex-col h-full bg-slate-950">
+      
+      <!-- Onglets du panneau droit -->
+      <div class="flex border-b border-slate-800 bg-slate-900/20 shrink-0">
+        <button id="tab-viewport" class="px-6 py-3 text-xs font-bold border-b-2 border-indigo-500 text-indigo-400 bg-slate-950 flex items-center gap-2">
+          📱 EN-COURS DE LECTURE (HTML ÉDITABLE)
+        </button>
+        <button id="tab-ast" class="px-6 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 flex items-center gap-2 transition">
+          🌳 ARBRE DE SYNTAXE (AST JSON)
+        </button>
+        <button id="tab-css" class="px-6 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 flex items-center gap-2 transition">
+          👁️ CSS TRADUIT PAR OMEGA
+        </button>
+      </div>
+
+      <!-- Espaces d'affichage -->
+      <div class="flex-1 relative overflow-hidden">
+        
+        <!-- Rendu Écran (Viewport) -->
+        <div id="viewport-container" class="absolute inset-0 flex flex-col p-6 bg-slate-950 overflow-y-auto">
+          <div class="max-w-2xl w-full mx-auto bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col min-h-[450px]">
+            <div class="bg-slate-50 border-b border-slate-100 px-4 py-2 flex items-center justify-between text-[11px] text-slate-400 shrink-0">
+              <span class="font-semibold tracking-wide">DOUBLE MAPPING SANS AUCUN TILDE (~)</span>
+              <span id="rendering-mode-badge" class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-mono font-bold">Thème : Auteur</span>
+            </div>
+            
+            <!-- Surface d'édition directe (DOM HTML) -->
+            <div id="umd-rendered-viewport" class="flex-1 p-8 md:p-12 prose max-w-none focus:outline-none" contenteditable="true">
+              <!-- Injecté dynamiquement -->
+            </div>
+          </div>
+          
+          <!-- Notice descriptive -->
+          <div class="max-w-2xl w-full mx-auto mt-4 bg-slate-900/80 border border-slate-800 rounded-lg p-4 text-xs text-slate-400">
+            <h4 class="font-bold text-slate-200 mb-1 flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Unification logique validée
+            </h4>
+            <p>Toutes les anciennes balises <code class="text-indigo-300">~</code> ont été réécrites en <code class="text-indigo-300">&&</code>. Le sur-bloc de document <code class="text-indigo-300">&&&[arial]</code> encapsule l'ensemble de la mise en page. Écris d'un côté ou de l'autre !</p>
+          </div>
+        </div>
+
+        <!-- Rendu de l'AST -->
+        <div id="ast-container" class="absolute inset-0 flex flex-col hidden p-6 overflow-y-auto">
+          <pre id="ast-output" class="p-6 bg-slate-900 rounded-xl border border-slate-800 text-indigo-300 font-code text-xs leading-relaxed overflow-x-auto h-full"></pre>
+        </div>
+
+        <!-- Rendu du CSS compilé -->
+        <div id="css-container" class="absolute inset-0 flex flex-col hidden p-6 overflow-y-auto">
+          <pre id="css-output" class="p-6 bg-slate-900 rounded-xl border border-slate-800 text-amber-300 font-code text-xs leading-relaxed overflow-x-auto h-full"></pre>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Zone de style injectée par le pipeline UCSS -->
+  <style id="compiled-ucss-target"></style>
+
+  <script>
+    // 1. Initialisation des textes d'exemple conformes aux spécifications finales sans aucun tilde
+    const defaultUMD = `&&&[font:lora h1:red_uu_><]
+# Chapitre Premier
+
+&&{blue}
+Dans le salon baigné d'une lumière tamisée, le silence régnait en maître absolu.
+Soudain, {red b}Marc&& entra précipitamment sans frapper à la porte de la pièce.
+&&
+
+# Le face-à-face
+
+>< Il s'arrêta brusquement et regarda longuement {red}Alicia&&.
+
+>> "Est-ce que tout va bien ?" demanda-t-il d'une voix sourde et hésitante.
+&&&`;
+
+    const defaultUCSS = `/* Configuration des mots mis en valeur */
+{red} {
+  color: #e63946;
+}
+{b} {
+  font-weight: 800;
+}
+
+/* Style de base de ligne (Semi-bloc) */
+&&{blue} {
+  color: #1d3557;
+  border-left: 5px solid #457b9d;
+  background-color: #f1faee;
+  padding: 12px 18px;
+  border-radius: 4px;
+}
+
+/* Alignements visuels intuitifs */
+>< {
+  text-align: center;
+}
+>> {
+  text-align: right;
+}
+
+/* Titre sémantique de niveau 1 */
+# {
+  font-size: 2.25em;
+  font-weight: 800;
+  text-decoration: underline double #e63946;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}`;
+
+    // Récupération des éléments d'interface
+    const umdTextArea = document.getElementById('umd-source');
+    const ucssTextArea = document.getElementById('ucss-source');
+    const viewPort = document.getElementById('umd-rendered-viewport');
+    const astOutput = document.getElementById('ast-output');
+    const cssOutput = document.getElementById('css-output');
+    const cssTarget = document.getElementById('compiled-ucss-target');
+    const compilerStats = document.getElementById('compiler-stats');
+    const badgeMode = document.getElementById('rendering-mode-badge');
+    const readerSelector = document.getElementById('reader-theme-selector');
+    const ttsButton = document.getElementById('btn-tts-play');
+
+    const btnTabUmd = document.getElementById('tab-umd');
+    const btnTabUcss = document.getElementById('tab-ucss');
+    const btnTabViewport = document.getElementById('tab-viewport');
+    const btnTabAst = document.getElementById('tab-ast');
+    const btnTabCss = document.getElementById('tab-css');
+
+    const containerEditorUmd = document.getElementById('editor-umd-container');
+    const containerEditorUcss = document.getElementById('editor-ucss-container');
+    const containerViewport = document.getElementById('viewport-container');
+    const containerAst = document.getElementById('ast-container');
+    const containerCss = document.getElementById('css-container');
+
+    // Variables pour l'anti-rebond du double mapping
+    let updateTimer = null;
+    let currentlyEditingFromViewport = false;
+
+    // --- DEMARRAGE DE L'APPLICATION ---
+    window.onload = function() {
+      umdTextArea.value = defaultUMD;
+      ucssTextArea.value = defaultUCSS;
+      setupTabs();
+      runCompiler();
+      setupEventListeners();
+    };
+
+    // --- NAVIGATION DES ONGLET (IHM) ---
+    function setupTabs() {
+      btnTabUmd.addEventListener('click', () => {
+        btnTabUmd.className = "px-6 py-3 text-xs font-bold border-b-2 border-indigo-500 text-indigo-400 bg-slate-900";
+        btnTabUcss.className = "px-6 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 transition";
+        containerEditorUmd.classList.remove('hidden');
+        containerEditorUcss.classList.add('hidden');
+      });
+      btnTabUcss.addEventListener('click', () => {
+        btnTabUcss.className = "px-6 py-3 text-xs font-bold border-b-2 border-amber-500 text-amber-400 bg-slate-900";
+        btnTabUmd.className = "px-6 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 transition";
+        containerEditorUcss.classList.remove('hidden');
+        containerEditorUmd.classList.add('hidden');
+      });
+
+      btnTabViewport.addEventListener('click', () => {
+        setRightTabActive(btnTabViewport);
+        containerViewport.classList.remove('hidden');
+        containerAst.classList.add('hidden');
+        containerCss.classList.add('hidden');
+      });
+      btnTabAst.addEventListener('click', () => {
+        setRightTabActive(btnTabAst);
+        containerAst.classList.remove('hidden');
+        containerViewport.classList.add('hidden');
+        containerCss.classList.add('hidden');
+      });
+      btnTabCss.addEventListener('click', () => {
+        setRightTabActive(btnTabCss);
+        containerCss.classList.remove('hidden');
+        containerViewport.classList.add('hidden');
+        containerAst.classList.add('hidden');
+      });
+    }
+
+    function setRightTabActive(activeButton) {
+      const buttons = [btnTabViewport, btnTabAst, btnTabCss];
+      buttons.forEach(btn => {
+        if (btn === activeButton) {
+          btn.className = "px-6 py-3 text-xs font-bold border-b-2 border-indigo-500 text-indigo-400 bg-slate-950";
+        } else {
+          btn.className = "px-6 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 transition";
+        }
+      });
+    }
+
+    // --- COMPILATION SÉMANTIQUE ---
+    function runCompiler() {
+      const umdText = umdTextArea.value;
+      const ucssText = ucssTextArea.value;
+
+      compilerStats.innerText = `Taille : ${new Blob([umdText]).size} octets`;
+
+      // Compilation du style sémantique (.ucss) en CSS standard
+      const compiledCSS = compileUCSS(ucssText);
+      cssTarget.innerHTML = compiledCSS;
+      cssOutput.textContent = compiledCSS;
+
+      // Parsing du code brut UMD en AST
+      const ast = parseUMD(umdText);
+      astOutput.textContent = JSON.stringify(ast, null, 2);
+
+      // Si l'auteur n'écrit pas directement dans l'HTML, on regénère le rendu
+      if (!currentlyEditingFromViewport) {
+        renderHTML(ast);
+      }
+    }
+
+    // --- COMPILATEUR UCSS -> CSS STANDARD ---
+    function compileUCSS(rawUcss) {
+      let css = rawUcss;
+      
+      // 1. Traduction des balises d'en-ligne {rouge} -> .umd-rouge
+      css = css.replace(/\{([a-zA-Z0-9_\-#]+)\}/g, '.umd-$1');
+      
+      // 2. Traduction des semi-blocs de lignes &&{blue} -> p.umd-line[data-line-style~="blue"]
+      css = css.replace(/&&\{([a-zA-Z0-9_\-#]+)\}/g, 'p.umd-line[data-line-style~="$1"]');
+      
+      // 3. Traduction des sur-blocs globaux &&&[arial] -> section.umd-super-block[data-config~="arial"]
+      css = css.replace(/&&&\[([a-zA-Z0-9_\-#:]+)\]/g, 'section.umd-super-block[data-config~="$1"]');
+      
+      // 4. Traduction des alias de Titres sémantiques (#)
+      css = css.replace(/^#\s*\{/gm, 'h1.umd-line {');
+      css = css.replace(/^##\s*\{/gm, 'h2.umd-line {');
+      css = css.replace(/^###\s*\{/gm, 'h3.umd-line {');
+      
+      // 5. Traduction des symboles d'alignement visuels
+      css = css.replace(/><\s*\{/g, '.umd-align-center {');
+      css = css.replace(/>>\s*\{/g, '.umd-align-right {');
+      css = css.replace(/<<\s*\{/g, '.umd-align-left {');
+      css = css.replace(/<>\s*\{/g, '.umd-align-justify {');
+
+      // Styles de base et d'accessibilité du conteneur
+      const baselineRules = `
+        .umd-b { font-weight: var(--umd-font-weight-b); }
+        .umd-i { font-style: var(--umd-font-style-i); }
+        .umd-u { text-decoration: var(--umd-decoration-u); }
+        .umd-uu { text-decoration: var(--umd-decoration-uu); }
+        .umd-s { text-decoration: line-through; }
+        .umd-align-center { text-align: center; }
+        .umd-align-right { text-align: right; }
+        .umd-align-left { text-align: left; }
+        .umd-align-justify { text-align: justify; }
+      `;
+
+      return baselineRules + "\n" + css;
+    }
+
+    // --- PARSEUR DE TEXTE BRUT UMD (Algorithme unifié) ---
+    function parseUMD(text) {
+      const lines = text.split('\n');
+      const ast = {
+        type: "document",
+        children: []
+      };
+
+      let currentSuperBlock = null;  // Portée Niveau 1 : Sur-bloc (&&&)
+      let currentMultiBlock = null;  // Portée Niveau 2 : Bloc multi-lignes (&&)
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        if (line === '') {
+          continue; // Nettoyage automatique des sauts de ligne vides physiques
+        }
+
+        // 1. Détection et gestion du Sur-bloc global (&&&)
+        if (trimmed.startsWith('&&&')) {
+          if (currentSuperBlock) {
+            // Fermeture du sur-bloc courant
+            ast.children.push(currentSuperBlock);
+            currentSuperBlock = null;
+          } else {
+            // Ouverture d'un sur-bloc de section
+            const configRaw = trimmed.match(/\[(.*?)\]/);
+            const config = {};
+            if (configRaw && configRaw[1]) {
+              configRaw[1].split(' ').forEach(item => {
+                const parts = item.split(':');
+                config[parts[0]] = parts[1] || true;
+              });
+            }
+            currentSuperBlock = {
+              type: "super_block",
+              config: config,
+              nodes: []
+            };
+          }
+          continue;
+        }
+
+        // 2. Détection et gestion du Bloc Multi-lignes (&&)
+        if (trimmed.startsWith('&&') && !trimmed.startsWith('&&&')) {
+          const styleMatch = trimmed.match(/^&&\{(.*?)\}/);
+          if (styleMatch) {
+            // Ouverture du bloc de paragraphes
+            currentMultiBlock = {
+              type: "multi_line_block",
+              style: styleMatch[1],
+              lines: []
+            };
+          } else if (trimmed === '&&') {
+            // Fermeture du bloc
+            if (currentMultiBlock) {
+              if (currentSuperBlock) {
+                currentSuperBlock.nodes.push(currentMultiBlock);
+              } else {
+                ast.children.push(currentMultiBlock);
+              }
+              currentMultiBlock = null;
+            }
+          }
+          continue;
+        }
+
+        // 3. Analyse lexicale de la ligne active
+        const parsedLine = parseLineContent(line);
+
+        // Intégration dans notre arbre de syntaxe selon la hiérarchie active
+        if (currentMultiBlock) {
+          currentMultiBlock.lines.push(parsedLine);
+        } else if (currentSuperBlock) {
+          currentSuperBlock.nodes.push(parsedLine);
+        } else {
+          ast.children.push(parsedLine);
+        }
+      }
+
+      // Résolution de sécurité (fermeture implicite des structures si oubli)
+      if (currentMultiBlock) {
+        if (currentSuperBlock) {
+          currentSuperBlock.nodes.push(currentMultiBlock);
+        } else {
+          ast.children.push(currentMultiBlock);
+        }
+      }
+      if (currentSuperBlock) {
+        ast.children.push(currentSuperBlock);
+      }
+
+      return ast;
+    }
+
+    // Analyseur sémantique d'en-ligne d'une ligne physique
+    function parseLineContent(lineText) {
+      let text = lineText;
+      let lineStyle = null;
+      let align = null;
+      let headingLevel = 0;
+
+      // Détection des modificateurs d'alignement visuels
+      if (text.startsWith('>< ')) {
+        align = "center";
+        text = text.substring(3);
+      } else if (text.startsWith('>> ')) {
+        align = "right";
+        text = text.substring(3);
+      } else if (text.startsWith('<< ')) {
+        align = "left";
+        text = text.substring(3);
+      } else if (text.startsWith('<> ')) {
+        align = "justify";
+        text = text.substring(3);
+      }
+
+      // Détection des Titres sémantiques (#)
+      if (text.startsWith('# ')) {
+        headingLevel = 1;
+        text = text.substring(2);
+      } else if (text.startsWith('## ')) {
+        headingLevel = 2;
+        text = text.substring(3);
+      } else if (text.startsWith('### ')) {
+        headingLevel = 3;
+        text = text.substring(4);
+      }
+
+      // Détection de surcharge de Titre avec &&#
+      if (text.startsWith('&&#')) {
+        headingLevel = 1;
+        const styleMatch = text.match(/^&&#\[(.*?)\]/);
+        if (styleMatch) {
+          lineStyle = styleMatch[1];
+          text = text.substring(styleMatch[0].length);
+        } else {
+          text = text.substring(3);
+        }
+      }
+
+      // Détection de la portée semi-bloc de ligne &&{style}
+      if (text.startsWith('&&{')) {
+        const styleMatch = text.match(/^&&\{(.*?)\}/);
+        if (styleMatch) {
+          lineStyle = styleMatch[1];
+          text = text.substring(styleMatch[0].length);
+        }
+      }
+
+      // Machine à états à pile pour le traitement des segments de mots en-ligne
+      const segments = [];
+      let i = 0;
+      let currentSegmentText = "";
+      let currentStyles = []; // Pile locale des états actifs
+
+      while (i < text.length) {
+        // Rencontre d'une ouverture sémantique : {style}
+        if (text[i] === '{' && text.indexOf('}', i) !== -1) {
+          if (currentSegmentText !== "") {
+            segments.push({ text: currentSegmentText, styles: [...currentStyles] });
+            currentSegmentText = "";
+          }
+          const endIdx = text.indexOf('}', i);
+          const styleContent = text.substring(i + 1, endIdx);
+          // Empilement des nouveaux états
+          styleContent.split(' ').forEach(st => currentStyles.push(st));
+          i = endIdx + 1;
+          continue;
+        }
+
+        // Rencontre de la fermeture unifiée : &&
+        if (text[i] === '&' && text[i+1] === '&') {
+          if (currentSegmentText !== "") {
+            segments.push({ text: currentSegmentText, styles: [...currentStyles] });
+            currentSegmentText = "";
+          }
+          // Dépilement complet de la zone d'en-ligne
+          currentStyles = [];
+          i += 2;
+          continue;
+        }
+
+        currentSegmentText += text[i];
+        i++;
+      }
+
+      if (currentSegmentText !== "") {
+        segments.push({ text: currentSegmentText, styles: [...currentStyles] });
+      }
+
+      return {
+        type: headingLevel > 0 ? "heading" : "line",
+        level: headingLevel,
+        lineStyle: lineStyle,
+        align: align,
+        segments: segments,
+        raw: lineText
+      };
+    }
+
+    // --- RECONSTRUCTION DIRECTE DU RENDU (HTML) ---
+    function renderHTML(ast) {
+      viewPort.innerHTML = "";
+
+      ast.children.forEach(node => {
+        const el = buildNodeHTML(node);
+        if (el) {
+          viewPort.appendChild(el);
+        }
+      });
+    }
+
+    function buildNodeHTML(node) {
+      // Rendu du Sur-bloc (Portée 1)
+      if (node.type === "super_block") {
+        const sec = document.createElement('section');
+        sec.className = "umd-super-block";
+        let configAttr = "";
+        for (let key in node.config) {
+          configAttr += `${key}:${node.config[key]} `;
+          if (key === 'font') {
+            sec.style.fontFamily = node.config[key] === 'lora' ? "'Lora', serif" : "Arial, sans-serif";
+          }
+        }
+        sec.setAttribute('data-config', configAttr.trim());
+
+        node.nodes.forEach(child => {
+          const childEl = buildNodeHTML(child);
+          if (childEl) sec.appendChild(childEl);
+        });
+        return sec;
+      }
+
+      // Rendu du Bloc (Portée 2)
+      if (node.type === "multi_line_block") {
+        const div = document.createElement('div');
+        div.className = "umd-multi-block my-4";
+        div.setAttribute('data-block-style', node.style);
+
+        node.lines.forEach(line => {
+          const lineEl = buildNodeHTML(line);
+          if (lineEl) div.appendChild(lineEl);
+        });
+        return div;
+      }
+
+      // Rendu d'une ligne ou d'un titre (Portée 3 et 4)
+      if (node.type === "line" || node.type === "heading") {
+        let tag = 'p';
+        if (node.type === "heading") {
+          tag = `h${node.level}`;
+        }
+
+        const el = document.createElement(tag);
+        el.className = "umd-line relative";
+        el.setAttribute('data-raw', node.raw);
+
+        if (node.lineStyle) {
+          el.setAttribute('data-line-style', node.lineStyle);
+        }
+        if (node.align) {
+          el.classList.add(`umd-align-${node.align}`);
+        }
+
+        node.segments.forEach(seg => {
+          const span = document.createElement('span');
+          span.textContent = seg.text;
+          
+          if (seg.styles && seg.styles.length > 0) {
+            seg.styles.forEach(st => {
+              span.classList.add(`umd-${st}`);
+              if (st.startsWith('red') || st.startsWith('perso')) {
+                span.classList.add('entity-token', 'bg-red-500/10', 'hover:bg-red-500/20', 'px-1', 'rounded', 'border-b-2', 'border-red-400');
+                span.setAttribute('contenteditable', 'false');
+              }
+            });
+          }
+          el.appendChild(span);
+        });
+
+        if (node.segments.length === 0) {
+          el.appendChild(document.createElement('br'));
+        }
+
+        return el;
+      }
+
+      return null;
+    }
+
+    // --- RE-CONSTRUCTION DU MASTER UMD SENS UNIQUE (DOUBLE MAPPING) ---
+    function setupEventListeners() {
+      umdTextArea.addEventListener('input', () => {
+        currentlyEditingFromViewport = false;
+        runCompiler();
+      });
+      
+      ucssTextArea.addEventListener('input', () => {
+        runCompiler();
+      });
+
+      // Synchronisation asynchrone lors de la saisie sur le rendu de l'écran
+      viewPort.addEventListener('input', () => {
+        currentlyEditingFromViewport = true;
+        
+        clearTimeout(updateTimer);
+        updateTimer = setTimeout(() => {
+          rebuildUMDFromDOM();
+        }, 1500);
+      });
+
+      // Clics interactifs sur les entités de personnages sémantiques
+      viewPort.addEventListener('click', (e) => {
+        if (e.target.classList.contains('entity-token')) {
+          const currentName = e.target.textContent;
+          const newName = prompt(`Modifier l'identité du personnage sémantique :`, currentName);
+          if (newName && newName !== currentName) {
+            e.target.textContent = newName;
+            rebuildUMDFromDOM();
+          }
+        }
+      });
+
+      // Changement de feuille de style (Séparation Fond / Forme)
+      readerSelector.addEventListener('change', (e) => {
+        const theme = e.target.value;
+        const root = document.documentElement;
+
+        if (theme === 'author') {
+          badgeMode.className = "bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-mono font-bold";
+          badgeMode.innerText = "Thème : Auteur";
+          root.style.setProperty('--umd-font', "'Lora', serif");
+          root.style.setProperty('--umd-color-text', '#1e293b');
+          root.style.setProperty('--umd-color-bg', '#f8fafc');
+          root.style.setProperty('--umd-font-weight-b', '700');
+          root.style.setProperty('--umd-decoration-uu', 'underline double #e63946');
+          viewPort.classList.remove('font-dyslexic');
+        } 
+        else if (theme === 'night') {
+          badgeMode.className = "bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono font-bold";
+          badgeMode.innerText = "Mode : Nuit Épuré";
+          root.style.setProperty('--umd-font', "sans-serif");
+          root.style.setProperty('--umd-color-text', '#cbd5e1');
+          root.style.setProperty('--umd-color-bg', '#0f172a');
+          root.style.setProperty('--umd-font-weight-b', '900');
+          viewPort.classList.remove('font-dyslexic');
+        } 
+        else if (theme === 'dyslexic') {
+          badgeMode.className = "bg-sky-100 text-sky-700 px-2 py-0.5 rounded font-mono font-bold";
+          badgeMode.innerText = "Mode : Aide Dyslexique";
+          root.style.setProperty('--umd-font', "'Comic Sans MS', sans-serif");
+          root.style.setProperty('--umd-color-text', '#0f172a');
+          root.style.setProperty('--umd-color-bg', '#eff6ff');
+          root.style.setProperty('--umd-font-weight-b', '900');
+          root.style.setProperty('--umd-decoration-uu', 'underline wavy #2563eb');
+          viewPort.classList.add('font-dyslexic');
+        }
+        else if (theme === 'high_contrast') {
+          badgeMode.className = "bg-yellow-400 text-black px-2 py-0.5 rounded font-mono font-bold";
+          badgeMode.innerText = "Mode : Contraste Élevé";
+          root.style.setProperty('--umd-font', "monospace");
+          root.style.setProperty('--umd-color-text', '#ffffff');
+          root.style.setProperty('--umd-color-bg', '#000000');
+          root.style.setProperty('--umd-font-weight-b', '900');
+          viewPort.classList.remove('font-dyslexic');
+        }
+      });
+
+      // Alexandria TTS vocal
+      ttsButton.addEventListener('click', () => {
+        simulateTTS();
+      });
+    }
+
+    // Relit l'arborescence du DOM réel pour recompiler la source UMD
+    function rebuildUMDFromDOM() {
+      let umdResult = "";
+      
+      const superBlock = viewPort.querySelector('section.umd-super-block');
+      if (superBlock) {
+        const config = superBlock.getAttribute('data-config') || "";
+        umdResult += `&&&[${config}]\n`;
+
+        const children = superBlock.children;
+        for (let i = 0; i < children.length; i++) {
+          const child = children[i];
+          
+          if (child.classList.contains('umd-multi-block')) {
+            const style = child.getAttribute('data-block-style');
+            umdResult += `&&{${style}}\n`;
+            for (let j = 0; j < child.children.length; j++) {
+              umdResult += reconstructLineSource(child.children[j]) + "\n";
+            }
+            umdResult += `&&\n`;
+          } else {
+            umdResult += reconstructLineSource(child) + "\n";
+          }
+        }
+        umdResult += `&&&`;
+      } else {
+        const lines = viewPort.querySelectorAll('.umd-line');
+        lines.forEach(line => {
+          umdResult += reconstructLineSource(line) + "\n";
+        });
+      }
+
+      umdTextArea.value = umdResult.trim();
+      runCompiler();
+    }
+
+    // Reconstruit une ligne textuelle UMD propre à partir de ses spans HTML enfants
+    function reconstructLineSource(lineEl) {
+      let result = "";
+
+      // Alignements
+      if (lineEl.classList.contains('umd-align-center')) {
+        result += ">< ";
+      } else if (lineEl.classList.contains('umd-align-right')) {
+        result += ">> ";
+      } else if (lineEl.classList.contains('umd-align-left')) {
+        result += "<< ";
+      } else if (lineEl.classList.contains('umd-align-justify')) {
+        result += "<> ";
+      }
+
+      // Titres
+      if (lineEl.tagName === 'H1') {
+        result += "# ";
+      } else if (lineEl.tagName === 'H2') {
+        result += "## ";
+      } else if (lineEl.tagName === 'H3') {
+        result += "### ";
+      }
+
+      // Portée Semi-bloc de ligne
+      const lineStyle = lineEl.getAttribute('data-line-style');
+      if (lineStyle) {
+        result += `&&{${lineStyle}}`;
+      }
+
+      // Segments de mots
+      const spans = lineEl.querySelectorAll('span');
+      spans.forEach(span => {
+        let styles = [];
+        span.classList.forEach(cls => {
+          if (cls.startsWith('umd-')) {
+            styles.push(cls.replace('umd-', ''));
+          }
+        });
+
+        if (styles.length > 0) {
+          // Utilisation stricte de l'opérateur && unifié pour fermer les styles en-ligne
+          result += `{${styles.join(' ')}}${span.textContent}&&`;
+        } else {
+          result += span.textContent;
+        }
+      });
+
+      return result;
+    }
+
+    // --- ALEXANDRIA : SYNTHESE AUDIO MULTIVOIX ---
+    function simulateTTS() {
+      if (!('speechSynthesis' in window)) {
+        alert("La synthèse vocale n'est pas supportée par votre navigateur.");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const lines = viewPort.querySelectorAll('.umd-line');
+      let playQueue = [];
+
+      lines.forEach(line => {
+        const spans = line.querySelectorAll('span');
+        
+        if (spans.length === 0) {
+          playQueue.push({ text: line.textContent, voiceType: 'narrator' });
+          return;
+        }
+
+        spans.forEach(span => {
+          let voiceType = 'narrator';
+          if (span.classList.contains('umd-red') || span.classList.contains('entity-token')) {
+            voiceType = 'character';
+          } else if (span.classList.contains('umd-b') || span.classList.contains('umd-i')) {
+            voiceType = 'accented';
+          }
+          playQueue.push({ text: span.textContent, voiceType: voiceType });
+        });
+      });
+
+      function playNext(index) {
+        if (index >= playQueue.length) {
+          ttsButton.innerText = "Écouter (Alexandria TTS)";
+          ttsButton.className = "flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg transition duration-200";
+          return;
+        }
+
+        const item = playQueue[index];
+        if (item.text.trim() === "") {
+          playNext(index + 1);
+          return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(item.text);
+        
+        if (item.voiceType === 'character') {
+          utterance.pitch = 0.8;  // Timbre plus bas pour les dialogues
+          utterance.rate = 0.9;
+        } else if (item.voiceType === 'accented') {
+          utterance.pitch = 1.3;  // Inflexion plus haute
+          utterance.rate = 1.0;
+        } else {
+          utterance.pitch = 1.1;  // Narrateur standard
+          utterance.rate = 1.05;
+        }
+
+        utterance.onend = function() {
+          playNext(index + 1);
+        };
+
+        ttsButton.innerText = "Alexandria parle...";
+        ttsButton.className = "flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg transition duration-200 animate-pulse";
+        window.speechSynthesis.speak(utterance);
+      }
+
+      playNext(0);
+    }
+  </script>
+</body>
+</html>

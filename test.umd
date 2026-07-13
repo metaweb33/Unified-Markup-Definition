@@ -1,0 +1,31 @@
+### Introduction
+Texte simple,
+test sur deux lignes.
+Test pour verification du retour à la ligne, si ce texte ne se retourne pas en arrivant au bout de la ligne ce serait domage.
+
+&&###><{blue}
+Ligne  non stylée du bloc h3 centré
+{red}~~{black}_Ligne de bloc bleu centré  soulignée en noir et barré en rouge{&} mot après arrêt
+{red}___{black}***Ligne bloc gras soulignée gras
+&&
+
+**bold *italique {red}~~_rouge barré souligné{&}  ***bold italic{/} normal
+
+++
+++{blue}
+++{purple}
+++{red}
+++#{red}#{blue}#{purple}#{black}#
+++!\/{red}
+
+![Python](https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg){20x20} Imge simple avec *texte à ***droite.
+
+Fenêtre de code :
+```python
+print("test")
+    z += 2
+    y -=1
+![Python](https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg){20x20} Imge simple avec *texte à ***droite.
+```
+
+test sortie
