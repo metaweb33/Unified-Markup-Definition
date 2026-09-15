@@ -1,0 +1,43 @@
+# Test de titre niveau h1
+#2 Titre h2
+#3 Titre h3
+#4 *Titre h4 emphase/*
+#5 **Titre h5 gras/**
+#6 ***Titre h6 gras+emphase retour au texte normal après retour à la ligne.
+
+    test tabulation texte normal. 
+    *emphase/*.
+    **Gras/**.
+    ***Gras et emphase /**emphase/* normal.
+    ***Gras et italique /*Gras/** normal.
+
+    Normal *emphase **emphase+gras{/} normal suite à fermeture de style général.
+    Normal **gras *gras+emphase{/} normal.
+
+    _Texte soulignement normal fermeture sur retour à la ligne :
+retour non souligné.
+
+__Soulignement double/_ non souligné ___Soulignement épais fermeture soulignement sur retour ligne.
+Texte normal.
+
+_Soulignement simple/& test de fermeture générale de style et de décoration.
+__*texte en emphase soulignement double/& texte normal non-souligné.
+
+Texte^exposant/^ texte sur la ligne.
+Texte~exposant/~ texte sur la ligne.
+**Texte gras^exposant normal
+Retour à la ligne normal (ni Gras ni exposant) 
+
+__texte souligné deux fois/_ puis normal
+___texte souligné épais/& puis normal
+**gras^_*exposant-italique souligné/^ gras mais pas italique.
+#2 *italique~**indice gras/~ suite italique mais pas en gras.
+
+normal^exposant~indice d'exposant^exposant d'indice d'exposant/& normal
+normal^exposant~indice d'exposant^exposant d'indice d'exposant/^indice d'exposant/~exposant/^ normal
+
+**Gras^*exposant~**indice d'exposant gras^**exposant d'indice d'exposant/^*indice d'exposant italique non gras/~exposant normal/^ normal
+
+\\ antislash `/` slash
+\* étoile \*\* deux étoiles
+`{**_^=#}` accolade ouverte 2 étoiles underscore accente circonflexe égale dièse fin d'accolade

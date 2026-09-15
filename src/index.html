@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UMD Editor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="top-bar">
+    <nav id="menu-bar">
+      <span>Fichier</span>
+      <span>Édition</span>
+      <span>Affichage</span>
+      <span>Insertion</span>
+      <span>Format</span>
+      <span>Outils</span>
+      <span>Aide</span>
+    </nav>
+    <div id="action-buttons">
+      <button id="btn-g" title="G">G</button>
+      <button id="btn-e" title="E">E</button>
+      <button id="btn-s" title="S">S</button>
+    </div>
+  </header>
+
+  <main id="app-container">
+    <section class="column">
+      <h2>Texte brut (UMD)</h2>
+      <textarea id="editor" placeholder="Saisissez votre texte UMD ici..."></textarea>
+    </section>
+
+    <section class="column">
+      <h2>Rendu HTML</h2>
+      <div id="html-preview"></div>
+    </section>
+
+    <section class="column">
+      <h2>AST (Arbre Syntaxique)</h2>
+      <pre id="ast-preview"><code>{}</code></pre>
+    </section>
+  </main>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
