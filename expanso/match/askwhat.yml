@@ -1,1 +1,475 @@
+matches:
+
+  - triggers: [":rarrow:", ":fleched:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '→' '⟶' '↠' '↪' '⇒' '⟹' '↣' '⤖' '⤗' '⤘' '⭇' '↷' '↷' '⟳' '↛' '⟼' '↦' ⇉ '⇶' '⇛' '⇛' '⇝' '⟿' --text='Choix' --height=100 --width=100"
+
+  - triggers: [":larrow:", ":flecheg:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '←' '⟵' '↞' '↩' '⇐' '⟸' '↢' '⤕' '⤔' '⤙' '⭆' '↶' '↶' '⟲' '↚' '⟻' '↤' ⇇ '⇷' '⇚' '⇚' '⇜' '⟽' --text='Choix' --height=100 --width=100" 
+
+  - triggers: [":uarrow:", ":flecheh:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '↑' '⟰' '↟' '⇑' '⤒' '⤓' '⭡' '↥' '⇈' '⇞' --text='Choix' --height=100 --width=100"
+  - triggers: [":darrow:", ":flecheb:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '↓' '⟱' '↡' '⇓' '⤔' '�' '⭣' '↧' '⇊' '⇟' --text='Choix' --height=100 --width=100"
+  
+  - triggers: [":carrow:", ":flechec:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '↺' '↻' '⟲' '⟳' '⤾' '⤿' '⭯' '⭮' --text='Choix' --height=100 --width=100"
+
+  - triggers: [":diagarrow:", ":flechediag:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '↗' '↘' '↙' '↖' '⤴' '⤵' '⤶' '⤷' '⤸' '⤹' --text='Choix' --height=100 --width=100" 
+
+  - triggers: [":doublearrow:", ":flechedouble:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '⇄' '⇆' '⇌' '⇋' '⇌' '⇍' '⇎' '⇏' '⇐' '⇒' --text='Choix' --height=100 --width=100"
+
+  - triggers: [ "multiarrow", ":flechemulti:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '⇉' '⇊' '⇈' '⇋' '⇌' '⇍' '⇎' '⇏' '⇐' '⇒' --text='Choix' --height=100 --width=100"
+
+  - triggers: [":matharrow:", ":flechemath:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '⟶' '⟵' '⟷' '⟸' '⟹' '⟺' '⟻' '⟼' '⟽' '⟾'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":chemarrow:", ":flechechem:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '⟶' '⟵' '⇌' '⇋' '⇍' '⇎' '⇏' '⇐' '⇒' '⇔' '⇕' '⇖' '⤴' '⤵' '⤶' '⤷' '⤸' '⤹' '⤺' '⤻' '⤼' '⤽'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":vectorarrow:", ":flechevector:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Flèches' '⇀' '⇁' '⇂' '⇃' '⇄' '⇅' '⇆' '⇇' '⇈' '⇉'  --text='Choix' --height=100 --width=100" 
+  
+  - triggers: [":mathtrigosymbols:", ":symboletrigo:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Symboles trigonométriques' 'sin' 'cos' 'tan' 'cot' 'sec' 'csc' 'arcsin' 'arccos' 'arctan' 'arccot' 'arcsec' 'arccsc'  --text='Choix' --height=100 --width=100"
+  
+  - triggers: [":mathlogsymbols:", ":symbolelog:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Symboles logarithmiques' 'ln' 'log' 'lg' 'lb' 'ld'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathothersymbols:", ":symboleautre:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Autres symboles' '∞' '∑' '∏' '∫' '∮' '∯' '∰' '∂' '∇' '∝'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathsetsymbols:", ":symbolesensemble:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Symboles d'ensembles' '∅' 'ℕ' 'ℤ' 'ℚ' 'ℝ' 'ℂ' 'ℍ' 'ℙ' 'ℕ₀' 'ℕ⁺'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathlogicoperators:", ":operateurlogique:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Opérateurs logiques' '¬' '∧' '∨' '⊕' '⇒' '⇔' '∀' '∃'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathsetoperators:", ":operateurensemble:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Opérateurs d'ensembles' '∪' '∩' '⊂' '⊃' '⊆' '⊇' '⊄' '⊅' '⊈' '⊉'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathrelationoperators:", ":operateurrelation:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Opérateurs de relation' '≈' '≠' '≡' '≤' '≥' '≺' '≻' '⊂' '⊃' '⊆'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathsetrelations:", ":relationensemble:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Relations d'ensembles' '∈' '∉' '∋' '∌' '⊂' '⊃' '⊆' '⊇' '⊄' '⊅'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":bigoperators:", ":operateurgrand:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Grand opérateurs' '∑' '∏' '∫' '∬' '∭' '∮' '∯' '∰'  --text='Choix' --height=100 --width=100"
+  
+  - triggers: [":mathconstants:", ":constante:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Constantes mathématiques' 'π' 'e' 'φ' 'γ' 'δ' 'ε' 'ζ' 'η' 'θ' 'ι'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathgreeks:", ":grec:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Lettres grecques' 'α' 'β' 'γ' 'δ' 'ε' 'ζ' 'η' 'θ' 'ι' 'κ'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathgreeksupper:", ":grecmaj:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Lettres grecques majuscules' 'Α' 'Β' 'Γ' 'Δ' 'Ε' 'Ζ' 'Η' 'Θ' 'Ι' 'Κ'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mathgreeksupperlower:", ":grecmajmin:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Lettres grecques majuscules et minuscules' 'Α' 'Β' 'Γ' 'Δ' 'Ε' 'Ζ' 'Η' 'Θ' 'Ι' 'Κ'  --text='Choix' --height=100 --width=100"
+  
+  - triggers: [":biglogicoperators:", ":biglogic:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Grand opérateurs logiques' '∧' '∨' '⊕' '⇒' '⇔' '∀' '∃'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":suppmath:", ":mathsup:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Symboles mathématiques supplémentaires' '∴' '∵' '∷' '∸' '∹' '∺' '∻' '∼' '≃' '≅'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [": basicmath:", ":mathbasics:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Symboles mathématiques de base' '+' '-' '×' '÷' '=' '≠' '<' '>' '≤' '≥'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":physicsconstants:", ":physconst:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Constantes physiques' 'c' 'G' 'h' 'ħ' 'k' 'μ₀' 'ε₀' 'R' 'Nₐ' 'F'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":physicsunits:", ":physunits:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Unités physiques' 'm' 'kg' 's' 'A' 'K' 'mol' 'cd' 'Hz' 'N' 'Pa'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":physicsoperators:", ":physops:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Opérateurs physiques' '∇' '∂' 'Δ' '∫' '∬' '∭' '∮' '∯' '∰'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":nuclearphysics:", ":nuclear:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Physique nucléaire' 'α' 'β⁻' 'β⁺' 'γ' 'n' 'p' 'd' 't' 'He³' 'He⁴'  --text='Choix' --height=100 --width=100"
+    
+  - triggers: [":chemistryconstants:", ":chemconst:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Constantes chimiques' 'R' 'F' 'k' 'Kₐ' 'K_b' 'K_w' 'K_sp' 'K_eq' 'ΔG°' 'ΔH°'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":chemistryunits:", ":chemunits:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Unités chimiques' 'mol' 'L' 'm³' 'g' 'kg' 'M' 'N_A' 'R' 'F' 'K_eq'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":thermodynamics:", ":thermo:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Thermodynamique' 'ΔG' 'ΔH' 'ΔS' 'T' 'P' 'V' 'n' 'R' 'K_eq' 'K_sp'  --text='Choix' --height=100 --width=100"
+  
+  - triggers: [":quantummechanics:", ":quantum:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Mécanique quantique' 'ħ' 'ψ' 'φ' 'χ' 'σ' 'τ' 'λ' 'ν' 'ω' 'Ω'  --text='Choix' --height=100 --width=100" 
+
+
+  - triggers: [":relativity:", ":relativite:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Relativité' 'c' 'E' 'm' 'v' 'γ' 'β' 'Δt' 'Δx' 'Δy' 'Δz'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":astrophysics:", ":astro:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Astrophysique' 'L' 'M' 'R' 'T' 'P' 'ρ' 'g' 'v' 'a' 'F'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":cosmology:", ":cosmo:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Cosmologie' 'H' 'Ω' 'Λ' 'ρ' 'a' 't' 'z' 'd_A' 'd_L' 'd_C'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":particlephysics:", ":partphys:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Physique des particules' 'e⁻' 'e⁺' 'μ⁻' 'μ⁺' 'τ⁻' 'τ⁺' 'ν_e' 'ν_μ' 'ν_τ' 'q'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":solidstatephysics:", ":solidstate:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Physique de l'état solide' 'a' 'b' 'c' 'α' 'β' 'γ' 'V' 'ρ' 'E_g' 'k_B'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":optics:", ":optique:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Optique' 'n' 'λ' 'f' 'θ' 'φ' 'ψ' 'α' 'β' 'γ' 'δ'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":acoustics:", ":acoustique:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Acoustique' 'f' 'λ' 'v' 'T' 'P' 'ρ' 'c' 'Z' 'L_p' 'L_w'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":fluidmechanics:", ":fluides:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Mécanique des fluides' 'ρ' 'μ' 'ν' 'σ' 'g' 'v' 'P' 'Q' 'Re' 'Fr'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":thermodynamics:", ":thermo:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Thermodynamique' 'ΔG' 'ΔH' 'ΔS' 'T' 'P' 'V' 'n' 'R' 'K_eq' 'K_sp'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":electromagnetism:", ":electro:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Électromagnétisme' 'E' 'B' 'D' 'H' 'J' 'ρ' 'σ' 'ε' 'μ' 'c'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":quantummechanics:", ":quantum:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Mécanique quantique' 'ħ' 'ψ' 'φ' 'χ' 'σ' 'τ' 'λ' 'ν' 'ω' 'Ω'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":relativity:", ":relativite:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Relativité' 'c' 'E' 'm' 'v' 'γ' 'β' 'Δt' 'Δx' 'Δy' 'Δz'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":crystallography:", ":cristallo:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Cristallographie' 'a' 'b' 'c' 'α' 'β' 'γ' 'V' 'ρ' 'E_g' 'k_B'  --text='Choix' --height=100 --width=100" 
+
+  - triggers: [":cryptography:", ":crypto:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Cryptographie' 'E' 'D' 'K' 'P' 'C' 'M' 'S' 'H' 'R' 'N'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":informationtheory:", ":infotheory:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Théorie de l'information' 'H' 'I' 'D' 'K' 'P' 'C' 'M' 'S' 'H' 'R'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":controltheory:", ":control:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Théorie du contrôle' 'G' 'H' 'K' 'P' 'C' 'M' 'S' 'H' 'R'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":signalprocessing:", ":signal:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Traitement du signal' 'X' 'Y' 'Z' 'F' 'G' 'H' 'K' 'P' 'C' 'M'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":communications:", ":comm:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Communications' 'S' 'N' 'P' 'C' 'M' 'H' 'R'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":electronics:", ":electro:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Électronique' 'V' 'I' 'R' 'C' 'L' 'G' 'H' 'K' 'P' 'M'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":mechanics:", ":meca:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Mécanique' 'F' 'm' 'a' 'v' 'p' 'E' 'K' 'U' 'W' 'P'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":biology:", ":bio:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Biologie' 'DNA' 'RNA' 'ATP' 'ADP' 'AMP' 'NADH' 'FADH2' 'O₂' 'CO₂' 'H₂O'  --text='Choix' --height=100 --width=100"
+
+  - triggers: [":chemistrygas:", ":chimiegaz:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Chimie' 'H₂O' 'CO₂' 'O₂' 'N₂' 'H₂' 'O₃' 'HCl' 'He' 'Ne' 'Ar' 'Kr' 'Xe' 'Cl₂'  'SO₂' 'H₂S' 'H₂SO₄' 'CH₄' 'C₂H₆' 'C₂H₄' 'C₂H₂' 'C₃H₈' 'C₃H₆' 'C₃H₄' 'C₄H₁₀' 'C₅H₁₂' 'C₆H₁₄' 'NO' 'NO₂''NH₃''NH₄'   --text='Choix' --height=100 --width=100"
+
+  - triggers: [":chemistryions:", ":chimieions:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Chimie' 'H⁺' 'H₃O⁺' 'OH⁻' 'Na⁺' 'K⁺' 'Mg²⁺' 'Ca²⁺' 'Ba²⁺' 'Al³⁺' 'Zn²⁺' 'Ag⁺' 'Pb²⁺' 'Fe²⁺' 'Fe³⁺' 'Cu⁺' 'Cu²⁺' 'Cl⁻' 'Br⁻' 'I⁻' 'SO₄²⁻' 'NO₃⁻' 'CO₃²⁻' 'PO₄³⁻' 'CH₃COO⁻' 'NH₄⁺' --text='Choix' --height=100 --width=100"
+
+  - triggers: [":chemistryaromatic:", ":chimiearomatique:"]
+    replace: "{{choix}}"
+    vars:
+      - name: choix
+        type: shell
+        params:
+          cmd: "zenity --list --column='Chimie' 'C₆H₆' '⏣' 'C₆H₅–' 'C₇H₈' 'C₆H₅CH₃' 'C₁₀H₈' 'C₆H₅OH' 'C₆H₅NH₂' 'C₆H₅COOH' 'C₅H₅N' 'C₁₄H₁₀' --text='Choix' --height=100 --width=100"
+
 
