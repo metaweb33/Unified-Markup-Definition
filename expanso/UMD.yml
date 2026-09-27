@@ -1,0 +1,115 @@
+matches:
+
+  - trigger: "&trig"
+    replace: "\n\n  - trigger: \"&$|$\"\n    replace: \"{}\"\n"
+
+  - trigger: ":trig"
+    replace: "\n\n  - triggers: [\":$|$:\", \"::\", \"::\", \"::\"]\n    replace: \"\"\n"
+
+  - triggers: ["&vert", "&VERT", "&green", "&GREEN"]
+    replace: "{green}"
+
+  - triggers: ["&rouge", "&ROUGE", "&RED", "&red"]
+    replace: "{red}"
+
+  - triggers: ["&bleu", "&BLEU", "&blue", "&BLUE"]
+    replace: "{blue}"
+
+  - triggers: ["&cyan", "&CYAN"]
+    replace: "{cyan}"
+
+  - triggers: ["&MAGENTA", "&magenta"]
+    replace: "{magenta}"
+
+  - triggers: ["&orange", "&ORANGE"]
+    replace: "{orange}"
+
+  - triggers: ["&gris", "&GRIS", "&grey", "&GREY"]
+    replace: "{grey}"
+
+  - triggers: ["&argent", "&ARGENT", "&silver", "&SILVER"]
+    replace: "{silver}"
+
+  - triggers: ["&blanc", "&BLANC", "&WHITE", "&white"]
+    replace: "{white}"
+
+  - triggers: ["&turquoise", "&TURQUOISE"]
+    replace: "{turquoise}"
+
+  - triggers: ["&corail", "&CORAIL"]
+    replace: "{corail}"
+
+  - triggers: ["&doré", "&DORE","&DORÉ","&GOLD", "&GOLDEN", "&golden"]
+    replace: "{gold}"
+
+  - triggers: ["&indigo", "&INDOGO"]
+    replace: "{indigo}"
+
+  - triggers: ["&violet", "&VIOLET", "&PURPLE", "&purple"]
+    replace: "{purple}"
+
+  - triggers: ["&jaune", "&JAUNE", "&YELLOW", "&yellow"]
+    replace: "{yellow}"
+
+  - triggers: ["&rose", "&ROSE", "&PINK", "&pink"]
+    replace: "{pink}"
+
+  - triggers: ["&marron", "&MARRON", "&brown", "&BROWN"]
+    replace: "{brown}"
+
+  - triggers: ["&olive", "&OLIVE"]
+    replace: "{olive}"
+
+  - triggers: ["&lime", "&LIME"]
+    replace: "{lime}"
+
+  - triggers: ["&ciel", "&CIEL", "&SKY BLUE", "&sky blue"] 
+    replace: "{sky blue}"
+
+  - trigger: "&beige"
+    replace: "{beige}"
+
+  - triggers: [":em:", ":i:"]
+    replace: "*$|$/*"
+
+  - trigger: ":g:"
+    replace: "**$|$/**"
+
+  - trigger: ":ge:"
+    replace: "***$|$/***"
+
+  - trigger: ":`:"
+    replace: "`$|$/`"
+
+  - triggers: [":s:", ":S:", ":u:", ":U:"]
+    replace: "_$|$/_"
+
+  - trigger: ":__:"
+    replace: "__$|$/_"
+
+  - trigger: "___"
+    replace: "___$|$/_"
+
+  - trigger: ":s~"
+    replace: "_~_$|$/_"
+
+  - trigger: ":s^"
+    replace: "_^_$|$/_"
+
+  - trigger: ":r:"
+    replace: "~~$|$/~~"
+
+  - trigger: ":=:"
+    replace: "==$|$/=="
+
+  - trigger: "§§bloc"
+    replace: "§§[$|$]\n\n/§§"
+
+  - trigger: "§zig"
+    replace: "§§[><><<<(8,+,-)]\n$|$\n/§§"
+
+  - trigger: "§pyr"
+    replace: "§§[><><(8,+,+)]\n|\n/§§"
+
+  - trigger: ":usin"
+    replace: "§§[><>><<(8,>>sin(n),<<cos(n))]\n|\n/§§"
