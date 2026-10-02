@@ -1,0 +1,25 @@
+matches:
+  - triggers: ["::ustyle:", "::umds:"]
+    replace: "{{result}}"
+    word: true
+    vars:
+      - name: result
+        type: shell
+        params:
+          cmd: |
+              zenity --forms --title="Style UMD" \
+              --add-combo="Comment" --combo-values="non|oui" \
+              --add-combo="Exp/Indice" --combo-values="normal|exposant|indice" \
+              --add-combo="Style texte" --combo-values="aucun|gras|italique|gras+italique" \
+              --add-combo="Couleur texte" --combo-values="heritée|red|blue|green|orange|purple|gray|yellow|black" \
+              --add-combo="Surlignage" --combo-values="non|oui" \
+              --add-combo="Couleur surlignage" --combo-values="heritée|red|blue|green|orange|purple|gray|yellow|black" \
+              --add-combo="Soulignement" --combo-values="aucun|simple|double|epais|points|tirets|double-tirets|ondule|scie|point-trait" \
+              --add-combo="Couleur soulignement" --combo-values="heritée|red|blue|green|orange|purple|gray|yellow|black" \
+              --add-combo="Rature" --combo-values="non|oui" \
+              --add-combo="Couleur rature" --combo-values="heritée|red|blue|green|orange|purple|gray|yellow|black" \
+              --add-entry="Contenu" \
+              --add-entry="Fermeture" \
+              --separator="|" \
+              --height=550 --width=400 2>/dev/null | \
+              python3 "$CONFIG/scripts/umd_style_form.py"

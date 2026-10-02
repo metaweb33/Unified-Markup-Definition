@@ -1,0 +1,197 @@
+matches:
+
+  - trigger: "il seront"
+    replace: "ils seront"
+
+  - trigger: "il feront"
+    replace: "ils feront"
+
+  - trigger: "il auront"
+    replace: "ils auront"
+
+  - trigger: "Je n'es "
+    replace: "Je n'ai "
+
+  - trigger: "je n'es "
+    replace: "je n'ai "
+
+  - trigger: "bj"
+    replace: "Bonjour"
+
+  - trigger: "à été "
+    replace: "a été "
+
+  - trigger: "apparait"
+    replace: "apparaît"
+
+  - trigger: "à eu "
+    replace: "a eu "
+
+  - triggers: ["aprem ", "aprèm "]
+    replace: "après-midi "
+
+  - triggers: ["auj ", "ajdh"]
+    replace: "aujourd'hui "
+
+  - triggers: ["au nouvelle ", "aux nouvelle ", "au nouvelles "]
+    replace: "aux nouvelles "
+
+  - trigger: "clotur"
+    replace: "clôtur"
+
+  - trigger: "bcp "
+    replace: "beaucoup "
+
+  - trigger: "Bcp "
+    replace: "Beaucoup "
+
+  - trigger: "cdt"
+    replace: "Cordialement"
+
+  - triggers: ["càd ","cad ", "c'est à dire " ]
+    replace: "c'est-à-dire "
+
+  - trigger: "chna "
+    replace: "chan"
+
+  - trigger: "consern"
+    replace: "concern"
+
+  - trigger: "Consern"
+    replace: "Concern"
+
+  - trigger: "cnx"
+    replace: "connexion"
+
+  - trigger: "Cpdt"
+    replace: "Cependant"
+
+  - trigger: "cpdt "
+    replace: "cependant"
+
+  - trigger: "dispo "
+    replace: "disponible "
+
+  - trigger: "dispos"
+    replace: "disponibilités "
+
+  - trigger: "windows "
+    replace: "Windows "
+
+  - trigger: "word "
+    replace: "Word "
+
+  - trigger: "excel "
+    replace: "Excel "
+
+  - triggers: ["outlook", "outllok"]
+    replace: "Outlook"
+
+  - trigger: "microsoft"
+    replace: "Microsoft"
+
+  - trigger: "lenovo"
+    replace: "Lenovo"
+
+  - trigger: "hdmi"
+    replace: "HDMI"
+
+  - trigger: "sccm"
+    replace: "SCCM"
+
+  - triggers: ["les votre ", "les votres"]
+    replace: "les vôtres"
+
+  - triggers: ["les notre ", "les notres"]
+    replace: "les nôtres"
+
+  - triggers: ["Les votre ", "Les votres"]
+    replace: "Les vôtres"
+
+  - triggers: ["Les notre ", "Les notres"]
+    replace: "Les nôtres"
+
+  - trigger: "mme "
+    replace: "Mme"
+
+  - trigger: "Ĉ"
+    replace: "Comme "
+
+  - trigger: "ĉ"
+    replace: "comme "
+
+  - trigger: "mê "
+    replace: "même "
+
+
+  - trigger: "ê "
+    replace: "être "
+
+  - trigger: "Ê "
+    replace: "Être "
+
+  - trigger: "p-e "
+    replace: "peut-être "
+
+  - trigger: "P-e "
+    replace: "Peut-être "
+
+  - trigger: "jqà"
+    replace: "jusqu'à"
+
+  - trigger: "jqau"
+    replace: "jusqu'au"
+
+  - trigger: "Jquau"
+    replace: "Jusqu'au"
+
+  - trigger: "Jqà"
+    replace: "Jusqu'à"
+
+  - triggers: ["téléw", "telew"]
+    replace: "télétravail"
+
+  - trigger: "tps "
+    replace: "temps "
+
+  - trigger: "tck"
+    replace: "ticket"
+
+  - trigger: "svp"
+    replace: "s'il vous plait"
+
+  - trigger: "stp"
+    replace: "s'il te plait"
+
+  - trigger: "qq "
+    replace: "quelques"
+
+  - trigger: "Qq "
+    replace: "Quelques"
+
+  - trigger: "qq1 "
+    replace: "quelqu'un "
+
+  - trigger: "qqch "
+    replace: "quelque-chose "
+
+  - trigger: "qqp "
+    replace: "quelque part"
+
+  - trigger: "qcq"
+    replace: "quelconque"
+
+  - trigger: "Rdv "
+    replace: "Rendez-vous"
+
+  - trigger: "rdv"
+    replace: "rendez-vous"
+
+  - trigger: "tonner"
+    replace: "toner"
+
+
+
+
+
+
