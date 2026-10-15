@@ -1,0 +1,58 @@
+
+
+
+
+
+voici le bloc code brut qui ne sert qu' au Paint text :
+par défaut il est rendu écrit en blanc sur font noir. Il est écrire avec une police console, et les balises de texte n'ont aucun effet sur le texte.
+Cependant, comme ce qui est expliqué dans celui qui suit, si la balise \`\`\` est suivit de "mermaid" '(```mermaid)/` il devient source d'un diagramme mermaid où on pourra ajouter la couleur, pas au texte du code mais au mermaid lui-même ainsi qu'au texte que le mermaid contient. Il subira donc un pré-traitement des couleurs avant que le code mermaid soit traité sans les couleurs ou le style et les décorations.
+
+```
+Entrée UMD :
+{purple}A[{blue}*texteA{/}]{red}-->{green}B[{pink}**texteB{/}]
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      1. EXTRACTION & AST                    │
+│  - Forme A : Couleur = purple                               │
+│  - Texte A : "<b>texteA</b>" (fond/couleur = blue)          │
+│  - Connecteur : Type = "-->", Couleur = red                 │
+│  - Forme B : Couleur = green                                │
+│  - Texte B : "<b>texteB</b>" (fond/couleur = pink)          │
+└─────────────────────────────────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│               2. ÉPURAGE & GENERATION MERMAID               │
+│  - Inline HTML inséré dans les libellés                     │
+│  - Directives 'style' et 'linkStyle' générées à la fin      │
+└─────────────────────────────────────────────────────────────┘
+                         │
+                         ▼
+Sortie Mermaid propre :
+graph LR
+    A["<span style='color:blue'><b>texteA</b></span>"]
+    B["<span style='color:pink'><b>texteB</b></span>"]
+    A --> B
+    style A fill:purple
+    style B fill:green
+    linkStyle 0 stroke:red
+/```
+
+
+Il en va de même pour la balise mathématique \$\$ (pour le bloc) et \$ (inline): 
+Cette dernière ne va pas être codé comme le Katex avec des mots mais avec les symbols utf-8 :
+il suffira de coder en Katex avec une legère modification :
+Par exemple, au lieu d'écrire \\int pour intégrale vous devrait taper ``$int$/`` et cela va devenir ∫
+si vous tapez ``$sum$/`` vous obtiendrez ∑ 
+... chaque balise sera remplacé par son symbole brut dans la source UMD. Cela rendra le style de l'équation ou de l'expression immédiatement plus parlant.
+Nous verrons plus tard que, dans les tableaux plus complexes, on pourra faire des calculs comme dans Excel selon le même principe.
+
+Ici le prétraitement servira à extraire les couleurs de colorisation ainsi que la retranscription des balises en langage Katex ou mathLM : à la sauce Typst mais déjà avec les caractères en UTF-8
+`{blue}∑({green}**n=0;{red}**i)/` séparera les couleurs en les notant et l'expression Katex reprendra sa forme de traitement puis le tout sera réuni pour le rendu final dans l'AST.
+
+Ici on obtient la somme ∑ en bleu avec ses limites avec ses limite de n=0 en vert et gras en dessous et i en rouge et gras en dessus.
+le parsing sera ne trois temps :
+1- on extrait couleur et style
+2- on traite la partie brut ''∑(n=0,i)
+3- on fusionne.
