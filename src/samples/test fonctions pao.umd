@@ -1,0 +1,159 @@
+_Prérequis/_ : un format de papier délimité A5, A4, .. du moins un cadre avec des marges.
+
+Sachant que :
+|tabulation gauche|\>|2 em|2x%(taille de la police) en %|
+|espace gauche\|+|0.5 em|0.5x%(taille de la police) en %|
+demi-point gauche|%1|%1|
+|tabulation droite|\<|2 em|-2x%(taille de la police) en %|
+|espace droite|\-|0.5 em|-0.5x%(taille de la police) en %|
+demi-point droite|%1|%1|
+
+# Fonction décalage horizontal
+
+#2 Fonction nulle : le décallage reste fixe par rapport au marges droite et gauche :
+
+``§§[>>>>+-<<]/`` : 
+alignement ``>>/`` : gauche
+``>>+/`` décalage droite : deux tabulations ``>>/``et une espace +  équivalent à 5em
+``-<</`` décalage droite : une espace ``-/`` et deux tabulations ``<</`` équivalent à -5em
+Pas de fonction : le décalage reste linéaire : c'est-à-dire **identique ligne après ligne/**.
+
+``` vu painttext
+|********+                            <-********|
+|********+                            <-********|
+|********+                            <-********|
+...
+**** représent une tabulation
++ un espace vers la droite
+- un espace depuis la droite
+| les marges
+< montre que le texte commence depuis la droite car l'alignement est à droite : >> 
+l'espace entre représente la zone de texte.
+/```
+
+
+#2 Colonne en diagonale
+
+#3 triagle-rectangle (au-dessus de la diagonale gauche droite)
+``§§[<>↘(+,0)]
+- Justifié, pas de décalage mais vous pouvez en mettre judte après ``<>/``
+- Fonction diagonale : "↘" puis collé entre parenthèses le décalage à appliquer à chaque ligne :
+- Décalage supplémentaire par ligne : "\+" : une espace : 0.5em, la première ligne n'étant, ici, pas décalée.
+- Décalage droite  : "0" indique pas de décalage (on reste collé à la marge de droite) ; 
+si on avait un décalage à droite en mettant un "\+" , on aurait obtenu un texte en triangle isocèle pointant vers le bas, pour mettre un moins "\-", il aurait fallu prévoir un décalage depuis la marge de droite, et on aurait obtenu un texte en parallélogramme, une collone diagonale.
+
+Ici on a la progression de décalage suivante : 
+ligne 1 : début sur marge gauche 0em
+ligne 2 : ``+ : 0.5em
+ligne 3 : ``++ : 1em
+ligne 4 : ``+++ : 1.5em
+ligne 5 : ``> : 2em
+ligne 6 : ``>+ : 2.5em
+ligne 7 : ``>++ : 3em
+ligne 8 : ``>+++ : 3.5em
+ligne 9 : ``>> : 4em 
+....
+
+``` Représentation PaintTextde ce que cela donne : 
+|<>                           |
+|+<>                          |
+|++<>                         |
+|+++<>                        |
+|++++<>                       |
+
+
+Attention : quand vous irez trop loin, ou avec un décalage trop fort, vous risquez ne plus avoir assez de place pour que les mots rentrent dans l'espace restant.
+petite astuce changez la taille de la police dans les paramètres de la balise ``§§ ou §§§ .
+
+#3 triagle-rectangle (au-dessous de la diagonale gauche droite)
+
+Le but est que les premiers mots ne soient pas trop long, et de faire en sorte que la marge plus le décalage de droite soit assez large mais pas trop.
+Si le premier mot et "À" pas de problème, le second "la" ont est toujours bon  le troisième" "claire", il faudra peut-être enlever deux ou trois espaces si le mot passe à la quatrième ligne. Si la quatrième ligne est "fontaine", encore deux espaces :
+ce qui fait que le "À la " vient de remonté sur la première ligne, "claire" est sur la seconde ligne et fontaine sur la troisième : on est pas trop mal, mais ce ne sera pas toujours le cas : 
+
+À la
+claire
+fontaine,
+M'en allant
+promener. J'ai
+trouvé l'eau si 
+claire, Que je m'y 
+suis baignée. Il y a
+ longtemps que je t'ai-
+me, Jamais je ne t'oubli-
+erai.
+
+Pour les puriste de l'alignement, il va falloir vous creuser les méninges.
+On va commencer par faire le raisonnement :
+
+Meilleur Alignement : gauche ou justifier : c'est à voir ici j'ai mis gauche
+
+
+``§§[<<<<<<<<<<↘(0,+)]
+ - Justifié pas de décalage mais vous pouvez en mettre judte après '<>
+ - Fonction diagonale : ↘ puis collé entre parenthèses le décalage à appliquer à chaque ligne :
+ - Décalage supplémentaire par ligne : \+ : une espace : 0.5em, la première ligne n'étant, ici, pas décalée.
+ -Décalage droite  : 0 indique pas de décalage (on reste collé à la marge de droite) 
+
+#2 Colonne zig-zag :
+
+``§§[><><<<⇌(9,+,-)] :
+Alignement : **Texte centré entre les marges plus le décalage/** : centré `></` 
+décalage gauche de la première ligne : une tabulation `>/` : 2em
+Décalage droite de la première ligne : trois tabulations `<<</` : `-6em/`
+Fonction *reverse/* : ⇌ juste entre parenthèses les paramètres :
+- Demi-pas : 9 , nombre de ligne avant inversion 9, réinversion ligne 18  
+- 4 espaces après la marge de gauche sur la première ligne 12 epaces avant la marge de droite. 
+- Sur  les 8 lignes suivantes, on décale de une espace de plus sur la marge de gauche et une espace en moins sur la marge de droite.
+
+|ligne 1| ``><<< |2em|``-6em|
+|ligne 2| ``>+---<< |2.5em|``-5.5em|
+|ligne 3| ``>++--<< |3em|``-5em|
+|ligne 4| ``>+++-<< |3.5em|``-4.5em|
+|ligne 5| ``>><< |4em|``-4em|
+|ligne 6| ``>>+---< |4.5em|``3.5em|
+|ligne 7| ``>>++--< |5em|`-3em|
+|ligne 8| ``>>+++-< |5.5em|`-2.5em|
+|ligne 9| ``>>>< |6em|``-2em|
+et retour reverse : 
+ligne 10 \= ligne 8
+ligne 11 \= ligne 7
+...
+ligne 18 \= ligne 1
+
+# colonne à étranglement
+
+``§§[><><⇌(9,+,+)] :
+
+Texte centré entre les marges plus le décalage, demi-pas, nombre de ligne avant inversion  4 espaces après la marge de gauche sur la première ligne 4 epaces avant la marge de droite et sur 8 lignes on décale de une espace de plus sur la marge de gauche et une espace en plus sur la marge de droite.
+
+ligne 1 ``>+-<
+ligne 2 ``>++--<
+ligne 3 ``>++--<
+ligne 4 ``>+++---<
+ligne 5 ``>><<
+ligne 6 ``>>+-<<
+ligne 7 ``>>++--<<
+ligne 8 ``>>+++---<<
+ligne 9 ``>>><<<
+et retour reverse
+ligne 10 \= ligne 8
+ligne 11 \= ligne 7
+...
+
+
+``§§[><>><<(16,>>sin(2π×n/8),<<cos(2π×n/8))] texte centré entre les marges plus le décalage, demi-pas, nombre de ligne avant inversion  4 espaces après la marge de gauche sur la première ligne 4 epaces avant la marge de droite et sur 8 lignes on décale de une espace de plus sur la marge de gauche et une espace en plus sur la marge de droite.
+
+ligne 1 ``>+-<
+ligne 2 ``>++--<
+ligne 3 ``>++--<
+ligne 4 ``>+++---<
+ligne 5 ``>><<
+ligne 6 ``>>+-<<
+ligne 7 ``>>++--<<
+ligne 8 ``>>+++---<<
+ligne 9 ``>>><<<
+et retour reverse
+ligne 10 \= ligne 8
+ligne 11 \= ligne 7
+...
