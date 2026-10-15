@@ -60,7 +60,12 @@ ligne 9 : ``>> : 4em
 |++<>                         |
 |+++<>                        |
 |++++<>                       |
-
+|+++++<>                      |
+|++++++<>                     |
+|+++++++<>                    |
+|++++++++<>                   |
+...
+/```
 
 Attention : quand vous irez trop loin, ou avec un décalage trop fort, vous risquez ne plus avoir assez de place pour que les mots rentrent dans l'espace restant.
 petite astuce changez la taille de la police dans les paramètres de la balise ``§§ ou §§§ .
