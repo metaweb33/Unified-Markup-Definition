@@ -126,6 +126,33 @@ ligne 11 \= ligne 7
 ...
 ligne 18 \= ligne 1
 
+``` Représentation PaintTextde ce que cela donne : 
+|<>                         ++++++++++++|
+|+<>                         +++++++++++|
+|++<>                         ++++++++++|
+|+++<>                         +++++++++|
+|++++<>                         ++++++++|
+|+++++<>                         +++++++|
+|++++++<>                         ++++++|
+|+++++++<>                         +++++|
+|++++++++<>                         ++++|
+|+++++++++<>                         +++|
+|++++++++<>                         ++++|
+|+++++++<>                         +++++|
+|++++++<>                         ++++++|
+|+++++<>                         +++++++|
+|++++<>                         ++++++++|
+|+++<>                         +++++++++|
+|++<>                         ++++++++++|
+|+<>                         +++++++++++|
+|<>                         ++++++++++++|
++<>                          +++++++++++|
+|++<>                         ++++++++++|
+|+++<>                         +++++++++|
+|++++<>                         ++++++++|
+...
+/```
+
 # colonne à étranglement
 
 ``§§[><><⇌(9,+,+)] :
@@ -145,9 +172,37 @@ et retour reverse
 ligne 10 \= ligne 8
 ligne 11 \= ligne 7
 ...
+``` Représentation PaintTextde ce que cela donne : 
+|+                  ><                  +|
+|++                 ><                 ++|
+|+++                ><                +++|
+|++++               ><               ++++|
+|+++++              ><              +++++|
+|++++++             ><             ++++++|
+|+++++++            ><            +++++++|
+|++++++++           ><           ++++++++|
+|+++++++++          ><          +++++++++|
+|++++++++           ><           ++++++++|
+|+++++++            ><            +++++++|
+|++++++             ><             ++++++|
+|+++++              ><              +++++|
+|++++               ><               ++++|
+|+++                ><                +++|
+|++                 ><                 ++|
+|+                  ><                  +|
+|+                  ><                  +|
+|++                 ><                 ++|
+|+++                ><                +++|
+|++++               ><               ++++|
+|+++++              ><              +++++|
+|++++++             ><             ++++++|
+|+++++++            ><            +++++++|
+|++++++++           ><           ++++++++|
+|+++++++++          ><          +++++++++|
+...
+/```
 
-
-``§§[><>><<(16,>>sin(2π×n/8),<<cos(2π×n/8))] texte centré entre les marges plus le décalage, demi-pas, nombre de ligne avant inversion  4 espaces après la marge de gauche sur la première ligne 4 epaces avant la marge de droite et sur 8 lignes on décale de une espace de plus sur la marge de gauche et une espace en plus sur la marge de droite.
+``§§[><>><<(18,>>sin(2π×(n-1)/8),<<cos(2π×(n-1)/8))] texte centré entre les marges plus le décalage, demi-pas, nombre de ligne avant inversion  4 espaces après la marge de gauche sur la première ligne 4 epaces avant la marge de droite et sur 8 lignes on décale de une espace de plus sur la marge de gauche et une espace en plus sur la marge de droite.
 
 ligne 1 ``>+-<
 ligne 2 ``>++--<
