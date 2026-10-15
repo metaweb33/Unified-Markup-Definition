@@ -1,1 +1,118 @@
+La couleur :
+
+Texte normal :
+Toujours avant le style ``{color}*emphase/*/`` , ``{color}**gras/**/`` ,  ``{color}***Gras/`` et ``{color}emphase/***/``
+
+``{color}/`` est soit :
+
+Pour la suite je vais alterné code inline UMD (balise visible et texte en mono) et le rendu que vous aurez si vous regardez ce document et non la source.
+
+- Une couleur en anglais pour les couleurs nommables comme pour le html :
+``{red}texte en rouge&& texte couleur par défaut (noir ici)
+{red}texte en rouge&& texte couleur par défaut (noir ici)
+
+- Une couleur en RGB comme en html :
+``{#ff0000}Texte en rouge&& texte couleur par défaut (noir)
+{#ff0000}Texte en rouge&& texte couleur par défaut (noir)
+
+- Une couleur en RGBA comme en html :
+``{#ff0000ff}Texte en rouge&&
+{#ff0000ff}Texte en rouge&&
+La balise ``&&/`` arrête la couleur du texte seulement.
+
+La balise ``{/}/`` arrête le style et les décorations du texte ainsi que leurs couleurs:
+``__{blue}**Texte gras bleu avec double soulignement{/} texte par défaut ou hérité en couleur par défaut ou héritée.
+__{blue}**Texte gras bleu avec double soulignement{/} texte par défaut ou hérité en couleur par défaut ou héritée.
+
+La balise ``/&/`` arrête le style du texte ainsi que sa couleur mais pas les décorations ni leurs styles mais leurs couleurs repassent en héritées:
+``__{blue}**Texte gras bleu avec double soulignement/& texte par défaut "couleur par défaut ou héritée toujours souligné en couleur héritée.
+__{blue}**Texte gras bleu avec double soulignement/& texte par défaut "couleur par défaut ou héritée toujours souligné en couleur héritée.
+
+Le retour à la ligne (hors balise de style local) arrête aussi la couleur :
+``__{blue}**Texte gras bleu avec double soulignement
+texte par défaut en couleur par défaut suite à retour à la ligne.
+__{blue}**Texte gras bleu avec double soulignement
+texte par défaut en couleur par défaut suite à retour à la ligne.
+
+
+
+``{blue}bleu {red}rouge&& bleu à nouveau&& couleur du parent héritéé du bloc le plus proche incluant le texte.
+{blue}bleu {red}rouge&& bleu à nouveau&& couleur du parent héritéé du bloc le plus proche incluant le texte.
+
+``{red}_Texte souligné en rouge/_ suffit fermeture du soulignement et de sa couleur.
+{red}_Texte souligné en rouge/_ suffit fermeture du soulignement et de sa couleur.
+
+``{blue}~~Texte barré en bleu/~~ fermeture du barré et de sa couleur.
+{blue}~~Texte barré en bleu/~~ fermeture du barré et de sa couleur.
+
+Quand on ferme une décoration, on ferme aussi sa couleur.
+
+Pour le surlignage : ``{color}== /==/`` fermeture surlignage et couleur ``&==/`` retour à la couleur du parent actif sur ce paramètré :
+
+``{lightgreen}==surligné en vert clair {lightred}==surligné en rouge clair&== surligné en couleur par hérité vert clair/& surligne en héritant du parent supérieur ou jaune par défaut sinon/== texte non-surligné.
+{lightgreen}==surligné en vert clair {lightred}==surligné en rouge clair&== surligné en couleur par hérité vert clair/& surligne en héritant du parent supérieur ou jaune par défaut sinon/== texte non-surligné.
+
+``{red}_Texte : texte souligné en rouge.
+Texte avec la couleur héritée du bloc parent et non-souligné.
+{red}_Texte : texte souligné en rouge.
+Texte avec la couleur héritée du bloc parent et non-souligné.
+
+``_{red}Texte : texte rouge souligné selon héritage.
+Texte avec la couleur héritée du bloc parent et non-souligné.
+_{red}Texte : texte rouge souligné selon héritage.
+Texte avec la couleur héritée du bloc parent et non-souligné.
+
+``{red}_Texte souligné en rouge/_ suffit pour que le texte continue avec la même couleur que le texte souligné en rouge.
+Texte en couleur héritée du bloc parent.
+{red}_Texte souligné en rouge/_ suffit pour que le texte continue avec la même couleur que le texte souligné en rouge.
+Texte en couleur héritée du bloc parent.
+
+
+**La décoration doit être écrite avant le style :
+
+Sinon voilà ce qui va arriver
+``{red}**_Texte/`` donnerait {red}Texte&& : en rouge non-souligné car \_ est après la balise de style et n'est pas échappé, il disparaît donc.
+
++++
+Ce point est à vérifier si on peut faire en sorte quand inversant style du texte et décoration on puisse, en mettant une couleur devant le style du texte on colore les décoration après de la même couleur. Mais à mon avis ce mettre une autre manière de réaliser ce combo, par exemple mettant les décorations dans une autre paire d'accolade, ou faire une balise ``&{color;décos et style}/``. (ce paragraphe tient de l'hypothèse et est voué à être soit validé soit supprimé si cela n'apporte rien de plus)
++++
+
+#3 Surlignage en couleur
+
+``{yellow}==texte surligné en jaune{lightgreen}==puis en vert clair fermeture /== ou retour à la ligne pour fermer le surlignage.
+{yellow}==texte surligné en jaune{lightgreen}==puis en vert clair fermeture ``/==/`` ou retour à la ligne pour fermer le surlignage.
+
+``{lightgreen}=={purple}_{red}~~blue***Texte bleu gras et en emphase, souligné en violet, surligné en vert clair et barré en rouge{/} texte normal en couleur héritée du bloc parent.
+{lightgreen}=={purple}_{red}~~blue***Texte bleu gras et en emphase, souligné en violet, surligné en vert clair et barré en rouge{/} texte normal en couleur héritée du bloc parent.
+
+#2 _Petite mise au point mais nécessaire à ce niveau/_ :
+
+Je vais alterner les termes "*par défaut*" et par héritage, hérité et hérité(e) du bloc parent : 
+Il faut voir l'UMD comme des poupées russes : 
+Chaque poupée bien que plus petit que la précédente à la même forme, ici c'est du texte, mais en vérité cela va être plus riche.
+Restons pour le moment dans le texte.
+
+L'UMD est un fichier texte comme le HTML ou le XML :
+Noir et blanc même police de console... il ne sert qu'à coder un rendu comme le fait Office dans un docx.
+Pour simplifier cela, le markdown m'a inspiré, cependant, j'ai voulu aller plus loin et ajouter le soulignement et la couleur.
+Mais de proche en proche, j'ai fini par aller où je ne pensais pas arriver, et cela va continuer.
+
+Donc chaque boîte (bloc ou poupée) a ses caractéristiques :
+Imaginez que l'on emboîte toutes les poupées puis on prend une perceuse et on perce des trous :
+Texte normal : telle police, telle taille, telle couleur...
+h1 ; autre police autre taille autres couleur numérotation ou pas souligné ou pas ...
+h2,h3, ....
+Exposant, indice, 
+soulignement, style, épaisseur ...
+...
+On crée un gabari pour tous les styles : une feuille de styles en cascade ou CSS pour Cascading Style Sheets en fixant chacun de ses perforations au mêmes endroits pour toutes les couches.
+Cependant, de temps en temps, on bouche un trou et on en fait un à côté pour, par exemple, passer un mot en gras . Et des fois, c'est tout un paragraphe que l'on veut changer.
+
+Pour mieux comprendre ma vision, le plus simple est de se dire que cette feuille de style en cascade est la plus petite des poupées et le document fini n'est pas la plus gros des poupées. Ainsi tout se passe dans les espaces entre ces dernières et la poupée qui est à l'extérieurs à l'instant où vous lisez ce mot en gras et ou en rouge.
+
+Puis le mot suivant est normal car la gros poupée n'est plus là et vous voyez le mot suivant telle que la plus petite poupée, la convention de base du CSS l'a prévue : c'est le fameux par défaut, elle est aussi l'héritage du CSS. 
+Mais cela peut aussi être l'héritage d'une poupée qui est au dessus de la poupée CSS et qui définit le texte comme bleu et en emphase et dans ce cas le mot est bleu et en emphase. On peut aussi remplacer par un autre poupée avec un nouveau style.
+En fait, il n'y a pas qu'un jeu de poupées russes mais des centaines perforées différemment et chacune d'elles à son propre style et ses propres décorations.
+
+
 
