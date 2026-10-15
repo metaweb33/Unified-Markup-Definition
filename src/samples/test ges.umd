@@ -1,43 +1,361 @@
 # Test de titre niveau h1
 #2 Titre h2
 #3 Titre h3
-#4 *Titre h4 emphase/*
-#5 **Titre h5 gras/**
-#6 ***Titre h6 gras+emphase retour au texte normal après retour à la ligne.
+#4 *Titre h4 emphase/* suite h4 normal.
+#5 **Titre h5 gras/** suite h5 normal.
+#6 ***Titre h6 gras+emphase
+retour au texte normal après retour à la ligne.
 
-    test tabulation texte normal. 
-    *emphase/*.
-    **Gras/**.
-    ***Gras et emphase /**emphase/* normal.
-    ***Gras et italique /*Gras/** normal.
+    Test tabulation texte normal. 
 
-    Normal *emphase **emphase+gras{/} normal suite à fermeture de style général.
-    Normal **gras *gras+emphase{/} normal.
+*emphase/* normal.
+*emphase/& normal.
+*emphase{/} normal.
+*emphase
+texte normal suite retour à la ligne.
 
-    _Texte soulignement normal fermeture sur retour à la ligne :
-retour non souligné.
+**Gras/** normal.
+**Gras/& normal.
+**Gras{/} normal.
+**Gras
+texte normal suite retour à la ligne.
 
-__Soulignement double/_ non souligné ___Soulignement épais fermeture soulignement sur retour ligne.
-Texte normal.
+***Gras et emphase/*** normal.
+***Gras et emphase/& normal.
+***Gras et emphase{/} normal.
+***Gras et emphase
+texte normal suite retour à la ligne.
 
-_Soulignement simple/& test de fermeture générale de style et de décoration.
-__*texte en emphase soulignement double/& texte normal non-souligné.
+***Gras et emphase /**emphase/* normal.
+***Gras et emphase /**emphase/& normal.
+***Gras et emphase /**emphase{/} normal.
+***Gras et emphase /**emphase
+texte normal suite retour à la ligne.
 
-Texte^exposant/^ texte sur la ligne.
-Texte~exposant/~ texte sur la ligne.
+***Gras et italique /*Gras/** normal.
+***Gras et italique /*Gras/& normal.
+***Gras et italique /*Gras{/} normal.
+***Gras et italique /*Gras
+texte normal suite retour à la ligne.
+
+Normal *emphase **emphase+gras/*** normal suite à fermeture gras+enphase.
+Normal *emphase **emphase+gras/& normal suite à fermeture générale de style.
+Normal **gras *gras et emphase{/} normal suite à fermeture générales style et décorations.
+Normal **gras *gras et emphase
+Normal suite à retour à la ligne.
+
+_Texte normal soulignement simple/_ texte normal non-souligné.
+_Texte normal soulignement simple/& texte normal toujours souligné (balise inopérante ici).
+_Texte normal soulignement simple{/} texte normal non-souligné.
+_Texte normal soulignement simple
+texte normal non-souligné suite retour à la ligne.
+
+_*Texte en emphase soulignement simple/_ texte en emphase non-souligné.
+_*texte en emphase soulignement simple/& texte normal souligné simple.
+_*texte en emphase soulignement simple{/} texte normal non-souligné simple.
+_*texte en emphase soulignement simple
+texte normal non-souligné suite retour à la ligne.
+
+_**Texte gras, soulignement simple/_ texte gras non-souligné.
+_**Soulignement simple texte gras/& texte normal toujours souligné.
+_**Soulignement simple texte gras{/} texte normal non-souligné.
+_**Soulignement simple texte gras
+texte normal non-souligné suite retour à la ligne.
+
+_***Texte gras en emphase soulignement simple/_ texte gras en empase non-souligné.
+_***texte gras en emphase soulignement simple/& texte normal souligné.
+_***texte gras en emphase soulignement simple{/} texte normal non-souligné simple.
+_***texte gras en emphase soulignement simple
+texte normal non-souligné suite retour à la ligne.
+
+ceci est valable avec tous les types de soulignement
+
+__Soulignement double/_ non-souligné.
+__Soulignement double/& souligné double.
+__Soulignement double{/} non-souligné.
+__Soulignement double
+non-souligné suite à retour à la ligne.
+
+___Soulignement épais/_ Texte non-souligné.
+___Soulignement épais/& Texte souligné épais.
+___Soulignement épais{/} Texte non-souligné.
+___Soulignement épais 
+Texte non-souligné suite à retour ligne..
+
+Types de soulignements supplémentaire toujours fermé par la balise de fermeture de soulignement ``/_/`` et celle de fermeture de styles de texte et décorations ``{/}/``:
+_._Soulignement en pointillés/_
+_-_Soulignement discontinu en tirets/_
+_=_Soulignement discontinu en double-tirets/_
+_~_Soulignement wavy/_
+_^_Soulignement dents de scie style correcteur grammatical/_
+_!_Soulignement axe trait point trait/_
+d'autres restent à penser éventuellement pour des versions ultéreures
+Peut-être même un réglage pour l'épaisseur.
+
+Les styles de soulignement sont indépendants des styles du texte :
+``/&/`` ferme seulement le style du texte.
+``{/}/`` ferme style du texte et décorations et donc leurs couleurs.
+
+La rature :
+~~texte raturé/~~ texte normal
+~~*texte en emphase raturé/& texte normal toujours raturé.
+~~***texte gras en emphase raturé{/} texte normal non raturé.
+~~***texte gras en emphase raturé
+texte normal non raturé suite à retour à la ligne.
+
+Le retour à la ligne revient à reprendre le style par défaut ou local voir la balise ``§§/``un peu plus bas.
+Pour le moment pas d'autres styles de rature
+peut-être dans une version ultérieure éventuellement avec un réglage d'épaisseur aussi.
+
+Les styles de soulignement et de rature (voir plus bas) sont aussi indépendants : 
+lors d'un _soulignement je peux : 
+§§[<<>>]_
+raturer un ~~mot/~~ (texte souligné sur plusieurs ligne car nous sommes dans un bloc de texte \§\§ aligné à gauche \<\< décalé de deux tabulations de $2 em/$ : \>\> vers la droite entre crochet puis le \_ indique que le texte subit un soulignement simple),
+en mettre un en **gras
+en *emphase
+ou les ~~***trois/***/~~ à la fois.
+/§§
+
+Le texte précédent est dans bloc texte : une balise de paragraphes multiligne :
+Ouverture en début de ligne ``§§/`` immédiatement suivi ici de paramètres entre crochets :
+**Aligné à gauche/** ``<</`` et décalé (*indenté/*) de **2 tabulations/** ``>>/``
+Chaque tabulation mesure 4 espaces soit **2 em
+Une espace mesure donc **0,5 em
+donc le tout mesure **4 em/** depuis la marge de gauche.
+Ce n'est qu'après la fermeture du crochet que l'on rajoute *directement/* **décoration et style du texte.
+Ici, je voulais que ***seul le texte soit souligné/& , c'est un style hérité et pas les tabulations ou les espaces éventuelles.
+Et ajouter des décorations et du styles à certaine mots.
+Après la fermeture ``/§§/`` et un retour à la ligne, le texte est de nouveau normal et non-souligné.
+
+Les paramètres d'alignement horizontal sont visuels :
+``<</`` alignement à gauche (après la marge de gauche)
+``>>/`` alignement à droite (avant la marge de droite)
+``></`` Alignement centré (entre les marges droite et gauche **sauf décalages asymétriques/**)
+``<>/`` Alignement justifié (entre les marges droite et gauche plus le décalage)
+
+
+Les paramètres de décalages horizontaux suivent immédiatement ceux d'alignement.
+Leur sens visuel (positif ou négatif) désignent la marge concernée.
+Trois types dont deux sont relatifs à la taille de police et un d'ajustement en demi-point (10 twips)
+1 twip est égal à un vingtième de point.
+Une police de **10 points** mesure **20 demi-points/** et donc **200 twips
+La taille de la police est appelé cadratin : **1 em
+Le demi-cadratin est **1 en
+
+Depuis la marge de gauche (vers la droite):
+
+|**Symbole|**Équivalent|**Valeur en *en|**valeur en *twip|
+|><|><|><|><|
+|``>|Tabulation|4 *en|N/A|
+|``+|Espace|1 *en|N/A|
+|%1|1 demi-point|N/A|10 *twips|
+
+Depuis la marge de droite (vers la gauche):
+
+|**Symbole|**Équivalent|**Valeur en *en|**valeur en *twip|
+|><|><|><|><|
+|``<|Tabulation|-4 *en|N/A|
+|``-|Espace|-1 *en|N/A|
+|-%1|1 demi-point|N/A|-10 *twips|
+
+exemple de syntaxe : 
+
+§§[>>>++%7<<---%3]*
+Ce texte en emphase (\*) est aligné à droite ``>>/``. Il part à 2 tabulations ``<</``+ 2 espaces ``--/``+ 3 demi-points  de la marge de droite  et ne peut pas allez plus loin qu'à tabulations ``>>>/`` + 2 espaces -- + 7 demi-points %7 de la marge de marge de gauche, avant de s'aligner de nouveau à la fin de la ligne avec le décallage de droite.
+Bien que j'aie tout écris sur une seule ligne, le paragraphe précédant a fait plusieurs aller-retour entre les marges ajouté à leur décalage.
+Ici, il n'y a pas de format ni de marge, on est en responsif la marge est le bord de l'écran avec une zone de confort sur une zoom trop fort cela risque d'être illisible ou trop étalé, et donc le décalage devra s'effacer petit à petit jusqu'a disparaître grâce au moteur de rendu.
+/§§
+
+
+Texte normal^exposant normal/^ texte normal sur la ligne.
+Texte normal^exposant normal
+Texte normal suite à retour à la ligne.
+
+Texte normal~indice normal/~ texte normal sur la ligne.
+Texte normal~indice normal
+Texte normal suite à retour à la ligne.
+
+*Texte en emphase^exposant normal/^ texte emphase propriété d'avant la balise d'exposant.
+*Texte en emphase^exposant normal
+Retour à la ligne normal (ni emphase ni exposant)
+
+*Texte en emphase~indice normal/~ texte emphase propriété d'avant la balise d'exposant.
+*Texte en emphase~indice normal
+Retour à la ligne normal (ni emphase ni indice)
+
+**Texte gras^exposant normal/^ texte gras propriété d'avant la balise d'exposant.
 **Texte gras^exposant normal
-Retour à la ligne normal (ni Gras ni exposant) 
+Retour à la ligne normal (ni Gras ni exposant)
 
-__texte souligné deux fois/_ puis normal
-___texte souligné épais/& puis normal
-**gras^_*exposant-italique souligné/^ gras mais pas italique.
-#2 *italique~**indice gras/~ suite italique mais pas en gras.
+**Texte gras~indice normal/~ texte gras propriété d'avant la balise d'indice.
+**Texte gras~indice normal
+Retour à la ligne normal (ni Gras ni indice)
 
-normal^exposant~indice d'exposant^exposant d'indice d'exposant/& normal
-normal^exposant~indice d'exposant^exposant d'indice d'exposant/^indice d'exposant/~exposant/^ normal
+***Texte gras-emphase^exposant normal/^ texte gras-emphase propriété d'avant la balise d'exposant.
+***Texte gras-emphase^exposant normal
+Retour à la ligne normal (ni Gras ni emphase ni exposant)
 
-**Gras^*exposant~**indice d'exposant gras^**exposant d'indice d'exposant/^*indice d'exposant italique non gras/~exposant normal/^ normal
+***Texte gras-emphase~indice normal/^ texte gras-emphase propriété d'avant la balise d'indice.
+***Texte gras-emphase~indice normal
+Retour à la ligne normal (ni Gras ni emphase ni exposant)
 
-\\ antislash `/` slash
-\* étoile \*\* deux étoiles
-`{**_^=#}` accolade ouverte 2 étoiles underscore accente circonflexe égale dièse fin d'accolade
+Si le texte est souligné le soulignement continue au même niveau que le texte sous l'exposant ou sous le premier niveau d'indice
+
+Normal^*exposant en emphase/^ normal.
+Normal~*indice en emphase/~ normal.
+
+Normal^**exposant gras/^ normal.
+Normal~**indice gras/~ normal.
+
+Normal^***exposant gras en emphase/^ normal.
+Normal~***indice gras en emphase/~ normal.
+
+On peut aussi souligner l'indice et l'exposant :
+
+
+Normal^_***exposant gras en emphase souligné simple/^ normal.
+Normal~__***indice gras en emphase souligné double/~ normal.
+
+Exemple sur un titre h2
+
+#2 _*Emphase h2~**indice h2 gras/~ suite emphase h2 mais pas en gras.
+
+
+Les balises de fin d'exposant ou d'indice ``/^/`` et ``/~/`` ferment tout le style et décoration interne au balises et premettent un retour à la normal quelque soit le niveau atteint Comme un retour à la ligne
+Les balises d'ouverture font barrage au style et décorations la précédant.
+
+
+Normal^exposant~indice d'exposant^exposant d'indice d'exposant/& normal.
+Normal^exposant~indice d'exposant^exposant d'indice d'exposant/^indice d'exposant/~exposant/^ normal.
+
+**Gras^*exposant en emphase~**indice d'exposant gras^**exposant d'indice d'exposant gras/^*indice d'exposant en emphase/~exposant normal/^ gras.
+
+**Gras^_*exposant en emphase souligné/^ gras mais pas italique ni souligné.
+
+
+
+Problème des caractères utilisés dans les balises :
+
+Pour faire apparaître les caractères utilisés dans les balises dans le rendu, il vous faudra soit un caractère d'échappement ``\/`` (un slash) devant chaque caractère, soit une balise de code inline qui est symétrique : le code inline se met entre deux backticks \`\`code\/\`\` et sa clôture : \/\`\` (un slash et deux backticks).
+Dans cette balise, le texte reste brut. Si vous voulez le transformer, il faudra mettre les transformations de style collées juste avant :
+**``*\_/+/``/** donnera le motif **en gras/** :  étoile antislash underscore slash plus dans le rendu.
+
+Si le texte précédent avait déjà été mis en gras, il aurait hérité du gras.
+Il en va de même pour l'échappement par antislash.
+
+Dernier échappement pour le code inline qui contient des backticks : soit on utilise un antislash devant chacun des caractères, soit on utilise :
+\{\`\`\} et on ferme avec \{\/\`\`\} : ici, pour vous faire apparaître ce visuel, j'ai mis un slash devant chaque caractère, car je n'aurais pas pu écrire ces deux balises sans interférence avec la balise de clôture avant l'acolade \} finale de la fermeture.
+
+Je pourrais donc montrer du code contenant deux ou plus de deux backticks : {``}/`\`{`}``/``{/``} :
+slash backtick antislash backtick accolade ouvrante backtick accolade fermante backtick backtick slash backtick backtick.
+J'ai volontairement mis une balise de fermeture de commentaire \/\` suivie d'un caractère d'échappement devant un backtick \\\` qui, hors de cette balise, n'aurait donné que le visuel d'un backtick sans l'antislash devant. Une ouverture de code inline qui, ici, est simplement visible \`\` et sa fermeture qui est visible \/\`\`
+Cependant, je n'aurais pas pu faire apparaître directement la balise de fermeture \{\/\`\`\} sans briser le bloc.
+
+Ci-dessous début de balise de texte local (ou le style du document s'efface pour laisser place au style par défaut s'il n'est pas suivit de paramètre entre crochet, immédiatement collés). Le titre ne suit pas la balise. Et cette balise est sans paramètre dont elle a les paramètres par défaut de l'éditeur (puisqu'il n'y a pas de balise ucss \§\§\§ en en-tête de ce fichier,nous verrons cela dans un autre document)
+
+§§ 
+# Test de visibilité : dans balise de texte locale.
+
+Dans ce test, sur le rendu, nous ne voyons _que les caractères échappés/_ avec un antislash ou une balise de code inline ouverte avec 2 backticks consécutifs et fermée avec un slash suivit de deux backticks ou encore de la balise inline entre accolades, ces trois types étant présentés plus haut. Et nous _**ne voyons pas les échappements.
+
+\/ slash ``//`` slash ``///`` double slash \/\/ double slash ....
+\\ antislash ``\/`` antislash ``\\/`` double antislash \\\\ double antislash ...
+\` backtick, \`\` double backtick ... (sinon le backtick reste invisible et on ne peut plus utiliser le marquage qui devient visible) ou pour un code contenant plusieurs backtick {``}```{/``} ici vous voyez \`\`\` dans le rendu et si vous regardez la source vous verrez \{\`\`\}\`\`\`\{\/\`\`\} pour les trois premiers backtick et \\\`\\\`\\\` pour le second.
+\§ ou ``§/``, \§\§ ou ``§§/`` ... (pour éviter la perte de styles et de décorations et des paramètres inline ``§/``, local ``§§/``, ou de la suite du document ``§§§/`` )
+D'autres balises ont, par nature, des propriètés d'échappement, comme l'exposant, l'indice, les tableaux et leurs cases, les balises de liens locaux, internet et mail et celle d'ancre.
+
+\* étoile ``*/`` étoile \*\* deux étoiles ou ``**/`` ... (pour éviter de passer en emphase et ou en gras où on ne veut qu'une étoile).
+\# ou ``#/`` \#\# ou ``##/`` ... (afin d'éviter de faire un titre au milieu d'une phrase)
+\_ underscore ``_/`` underscore \_\_ double underscore ou ``__/`` (pour éviter de souligner ce qui suit).
+\^ caret (chapeau chinois) ``^/`` caret \^\^ double caret ou ``^^/`` (pour ne pas passer en exposant)
+\~ tilde ``~/`` tilde  \~\~ double tilde ou ``~~/`` (pour ne pas passer en indice ou barrer le texte).
+= égal \= égal ``=/`` égal \=\= double égal ``==/`` double égal... (pour éviter les surlignages non désirés)
++ plus ou \+  voire ``+/`` plus, en cas de combinaisons de symboles \+\+ double plus ``++/`` ... (pour évité de faire un séparateur personnalisé impromptu en début de ligne).
+- tiret (moins) mais pas en début de ligne où l'on doit mettre \- si on ne veut pas commencer une liste en le faisant suivre d'une espace ; \-\- pour le double et \-\-\- pour le triple car il est prévu que deux tirets consécutifs génèrent un demi-cadratin (–) et trois à la suite un cadratin (—). Le demi-cadratin et le cadratin devrons aussi être échappés car cela créera aussi une liste (enfin pour le moment ce n'est pas certain).
+
+#2 Séparateur contextuel de balise
+\{ une acolade d'ouverture ``{/`` ; \{\{ ou ``{{/`` pour deux... (Pour ne pas que le parser cherche une couleur, voir chapitre sur les couleurs).
+\} une acolade de fermeture \}\} ou ``}}/``... (idem, mais surtout par prudence)
+\> un signe supérieur ``>/`` ; deux signes supérieur \>\> ou ``>>/`` ... (sinon on déclenche un niveau de citation ou deux ou trois...)
+\< un signe inférieur ``</`` (par prudence)
+
+#2 Visible sans échappement :
+[ un crochet (bracket) deux crochets [[ (sauf dans les blocs autres que texte ``§§§ ou §§ ou §/`` hors paramètre ``§§§[...] , §§[...] et §[...]/``)
+] un crochet fermant ]] ou ]] . Cependant, je mets une réserve sur cette nécéssité de commentaire sur les crochets parce qu'ils ne sont jamais utilisés seuls inline pour servir de balise. Il se peut que cela change, mais ils seront toujours collés aux balise.
+! un point d'exclamation , 2 points d'exlamation : !! (la règle que je me suis fixée et de ne pas trop prendre de caractères de ponctuation, le point d'exclamation est un début de balise, il ne faudra pas nécessairement le commenter en revanche s'il est immédiatement d'un crochet "[" il faudra l'échapper ainsi que le crochet : \!\[ : \\!\\\[ sur le rendu)
+
+/§§
+
+Ci-dessus la fermeture de la balise de texte plus haut.
+
+Ci-dessous l'ouverture de la balise de code (trois backticks consécutifs) suivit du titre précédé d'une espace, ici sans paramtère
+
+``` Test de visibilité aperçu du langage invisible dans le mode précédant.
+Ici, nous sommes dans un bloc code en verbatim : tous les antislash et backticks sont visibles en mode rendu.
+\/ slash ``//`` slash ``///`` double slash \/\/ double slash ....
+\\ antislash ``\/`` antislash ``\\/`` double antislash \\\\ double antislash ...
+= égale \= égale ``=/`` égale \=\= double égale ``==/`` double égale... (pour éviter les surlignages non désirés)
++ plus ``+/`` plus \+\+ double plus ``++/`` ... (pour évité de faire un séparateur personnalisé impromptu).
+- tiret (moins) mais pas en début de ligne où l'on doit mettre \- si on ne veut pas commencer une liste en le faisant suivre d'une espace ; \-\- pour le double et \-\-\- pour le triple car il est prévu que deux tiret consécutif génère un demi-cadratin (–) et trois à la suite un cadratin (—). Le demi-cadratin et le cadratin devrons aussi être échappés car cela créera aussi une liste.
+\§ ou ``§/``, \§\§ ou ``§§/`` ... (pour éviter la perte de styles et de décorations inline ``§/``, local ``§§/``, ou de la suite du document ``§§§/`` )
+\` backtick, \`\` double backtick ... (sinon le backtick reste invisible et on ne peut plus utiliser le marquage qui devient visible) ou un code contenant plusieurs backtick {``}```{/``} ici vous voyez \`\`\` si vous regardez la source vous verrez \{\`\`\}\`\`\`\{\/\`\`\} pour les trois premier backtick et \\\`\\\`\\\` pour le second.
+\* étoile ``*/`` étoile \*\* deux étoiles ou ``**/`` ... (pour éviter de passer en emphase et ou en gras où on ne veut qu'une étoile).
+\# ou ``#/`` \#\# ou ``##/`` ... (afin d'éviter de faire un titre au milieu d'une phrase)
+\_ underscore ``_/`` underscore \_\_ double underscore ou ``__/`` (pour éviter de souligner ce qui suit).
+\^ caret (chapeau chinois) ``^/`` caret \^\^ double caret ou ``^^/`` (pour ne pas passer en indice)
+\~ tild ``~/`` tild  \~\~ double tild ou ``~~/`` (pour ne pas passer en indice ou barrer le texte).
+\{ une acolade d'ouverture \{\{ ou ``{{/``... (Pour ne pas que le parser cherche une couleur)
+\} une acolade de fermeture \}\} ou ``}}/``...
+\[ un crochet (bracket) deux crochet \[\[ ou ``[[/`` (sauf dans les blocs autres que texte ``§§§ ou §§ ou §/`` hors paramètre ''§§§[...] §§[...] §§[...]/``)
+\] un crochet fermant \]\] ou ``]]/`` cependant, je mets une réserve sur cette nécéssité de commentaire sur les crochets parce qu'il ne sont jamais utilisés seuls en inline.
+\> un signe suppérieur ``>/`` ; deux signe suppérieur \>\> ou ``>>/`` ... (sinon on déclenche un niveau de sitation ou deux ou trois...
+
+/§§
+
+```UMD Test code sans les échappements (sauf pour la balise spéciale backticks)
+Nous sommes dans une balise code UMD en paint text et en verbatim.
+/ slash // double slash ....
+\ antislash \\ double antislash ...
+= égal == double égal ... ( pas de surlignages ici)
++ plus ++ double plus +++ tripleplus ... (pas de séparateur personnalisé impromptu).
+- tiret (moins)  -- pour le double tiret mais pas un demi–cadratin – et --- pour le triple tiret et pas de cadratin (—) 
+§ ou §, §§ ou §§§ ... (pas de perte de styles et de décorations inline §, local §§, ou de la suite du document §§§)
+` backtick, `` double backtick  ``` triple backtick... ( le backtick reste visible).
+Ici on peut écrire la séquence ``` (mais pas en début de ligne) et aussi /``` (tant qu'on ne le met pas seul sur une ligne).
+* étoile  ** deux étoiles (pas emphase et ou de gras justeune étoile).
+# ou # ## ou ## ... (ici pas de titre possible en mode verbatim). 
+_ underscore  __ double underscore ou ___ triple (pas de soulignement en verbatim).
+^ caret (chapeau chinois) ^ caret ^^ double caret ou ^^ (on ne passe pas en exposant)
+~ tilde ~~ double tild (pour ne pas passer en indice ou barrer le texte).
+{ une accolade d'ouverture {{ deux accolades... (pas de parser de couleur)
+} une accolade de fermeture }} deux accolades de fermeture ...
+[ un crochet (bracket) deux crochets [[  (sauf dans les blocs autres que texte §§§ ou §§ ou § hors paramètre §§§[...] §§[...] §§[...])
+] un crochet fermant ]] deux ]] cependant, 
+> un signe supérieur > ; deux signe supérieur >>... on ne déclenche pas un niveau de sitation ou deux ou trois...
+
+/```
+
+Les caractères utilisés **uniquement/** dans les paramètres entre crochets donc n'ont pas besoin d'être commentés.
+
+``{**_^=#}/`` accolade ouverte 2 étoiles underscore accente caret égal dièse accolade fermée.
+
+On peut faire un abus de langage en ne mettant que deux backtricks  car cette balise aussi se ferme en changeant de ligne et ne modifie pas le texte (sauf que l'on est en police mono), à condition de ne pas utiliser de décorations ou de style ou couleur dans le reste du paragraphe (ligne de texte). Si je reprends la ligne précédente et que j'enlève la fermeture \/\`\` on obtient le même résultat.
+
+``{**_^=#} accolade ouverte 2 étoiles underscore accente caret égal dièse accolade fermée.
+auto fermeture après retour à la ligne, cependant la ligne précédante est en police monospace.
+
+En revanche si j'avais voulu mettre un mot en gras ou en emphase, j'aurais juste mis des étoiles et les mots n'aurait pas changé de syle à moins de finalement mettre la balise de clôture de d'échappement :
+
+``{**_^=#} accolade ouverte 2 étoiles underscore caret égal dièse accolade fermée. /``*Texte en emphase**gras et emphase mais plus en mono.
+
+``\ antislash, \\ double antislash, \\\ triple...
+``/ slash, // double slash, /// triple...
+``= égal, == double égal, === triple égal...
+``+ plus, ++ double plus, +++ triple plus... (ici pas de balise de séparateur)
+``- tiret ou moins, -- double tiret (et plus demi-cadratin), --- triple tiret (et plus cadratin)...
+``§ , §§ , §§§ ... (ici pas de balise de style inline ou de style sur plusieurs ligne ou de balise CSS)
+{``}` backtick, `` double backtick, ``` triple backtick... (ici le premier backtick "commente la ligne, le second et les suivant sont visibles dans le rendu).
+``* étoile, ** double étoile, *** triple étoile...(pas d'emphase et ou de gras)
+``# dièse ## double dièse, ### triple dièse... (ici pas de titre h1)
+``_ underscore __ double underscore, ___ triple underscore... (ici plus question de soulignement)
+Les phrases précédantes sont toutes en police mono (remarquez la balise spécial backtick sur la ligne des backtick).
