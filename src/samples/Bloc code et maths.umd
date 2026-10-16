@@ -84,6 +84,17 @@ Effectivement ici je copie Typst mais ce n'est pas par manque d'idée, c'est que
 
 Le in : ``$in$/`` devient ∈
 La fonction intégrale ``∫(indice,exposant) en tapant $int$/``
-Pareil pour ``$oint$/``
-Pour ``$iint$\`` ...
-Même ``$alpha$ ou $Alpha$
+Pareil pour ``$oint$/`` : ∮(indice,exposant)
+Pour ``$iint$\`` :∬(indice,exposant)
+Pour ``$oiint/$ : ∯(indice,exposant)
+​pour ``$iiint/$ : ∭(indice,exposant)
+Pour ``$oiiint/$ : ∰(indice,exposant)
+...
+Le caractère unicode qui remplace la fonction n'a rien à voir avec le rendu  qui est beaucoup plus complexe. Cependant, il existe un git qui donne les métriques exactes de LaTex : https://github.com/vincentdoerig/latex-css
+Le caractère ne sera qu'une balise très ressemblante à la fonction réelle, mais sans les métriques, cela va juste jouer sur la lisibilité de la source plus parlante qu'en Latex ou en Typst, et aussi sur le poids du fichier source... 
+L'ast qui en sortira aura la même taille, et le rendu sera quasiment identique, voire identique selon que vous désirez imprimer ou visualiser.
+
+Même ``$alpha$ ou $Alpha$ donner des alphas unicodes dans la source mais le rendu et donc le document en sortie d'impression sera en Latex ou KaTex.
+
+Pour le code, pas question d'un rendu extraordinnaire, cependant, il faut absolument que la police soit monospace, et il faut aussi du highlighting pour que les fonctions et variables ressortent.
+Autre point important : des polices monospace : cela permet le PaintText.
