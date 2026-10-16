@@ -3,7 +3,7 @@
 
 
 
-voici le bloc code brut qui ne sert qu' au Paint text :
+Voici le bloc code brut qui ne sert qu' au PaintText :
 par défaut il est rendu écrit en blanc sur font noir. Il est écrire avec une police console, et les balises de texte n'ont aucun effet sur le texte.
 Cependant, comme ce qui est expliqué dans celui qui suit, si la balise \`\`\` est suivit de "mermaid" '(```mermaid)/` il devient source d'un diagramme mermaid où on pourra ajouter la couleur, pas au texte du code mais au mermaid lui-même ainsi qu'au texte que le mermaid contient. Il subira donc un pré-traitement des couleurs avant que le code mermaid soit traité sans les couleurs ou le style et les décorations.
 
@@ -41,7 +41,7 @@ graph LR
 
 
 Il en va de même pour la balise mathématique \$\$ (pour le bloc) et \$ (inline): 
-Cette dernière ne va pas être codé comme le Katex avec des mots mais avec les symbols utf-8 :
+Cette dernière ne va pas être codé comme le Katex avec des mots mais avec les symboles utf-8 :
 il suffira de coder en Katex avec une legère modification :
 Par exemple, au lieu d'écrire \\int pour intégrale vous devrait taper ``$int$/`` et cela va devenir ∫
 si vous tapez ``$sum$/`` vous obtiendrez ∑ 
@@ -56,3 +56,28 @@ le parsing sera ne trois temps :
 1- on extrait couleur et style
 2- on traite la partie brut ''∑(n=0,i)
 3- on fusionne.
+
+Si j'avais voulu écrire les conditions sous la somme comme on pourrait écrire ``$ sum_(i in Lambda\ 0 < j < n) $/`` en Typst en UMD sous la balise mathématique \$\$ ou dans un bloc mathématiques \$\$\$ , j'aurais écrit : 
+``$ ∑(i ∈ Λ \ 0 < j < n) $ :
+$ ∑(i ∈ Λ \ 0 < j < n) $
+ou
+``$ ∑(i ∈ Λ \ 0 < j < n;"") $:
+$ ∑(i ∈ Λ \ 0 < j < n;"") $
+
+Ici la fonction ``∑(dessous;dessus)/`` fonctionne avec un opérateur de retour à la ligne qui ne marche que dans les balises mathématiques : "``\ /`` (antislash suivi d'un espace)
+Cependant, écrire $ sum_(i &in Lambda\ 0 < &j < n) $ en Typst donne un meilleur résultat car on aligne mieux le in et le j et je vais faire pareil en UMD :
+``$ ∑(i &∈ Λ \ 0 < &j < n) $ :
+$ ∑(i &∈ Λ \ 0 < &j < n) $
+ou
+``$ ∑(i &∈ Λ \ 0 < &j < n;"") $:
+$ ∑(i &∈ Λ \ 0 < &j < n;"") $
+Il ne tiendra qu'à vous pour penser à l'alignement.
+
+Autre détail typst les espaces si on ne met pas d'espace entre $ et la formule on obtient la même formule mais plus écrasée et donc plus adaptée pour la glisser dans une phrase de texte, dans un bloc texte \§\§ ou \§ :
+``$ ∑(i &∈ Λ \ 0 < &j < n) $ :
+$∑(i &∈ Λ \ 0 < &j < n)$
+
+Problème du symbole \$ : en fait il n'y en a pas : il suffit de le commenter \\\$
+dans un bloc texte ou mathématiques il sera en  police demandée, dans un bloc code il sera en police mono demandée.
+
+La fonction intégrale ``∫(indice,exposant) \int/``
