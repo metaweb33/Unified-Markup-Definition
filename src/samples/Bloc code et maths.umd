@@ -80,4 +80,10 @@ $∑(i &∈ Λ \ 0 < &j < n)$
 Problème du symbole \$ : en fait il n'y en a pas : il suffit de le commenter \\\$
 dans un bloc texte ou mathématiques il sera en  police demandée, dans un bloc code il sera en police mono demandée.
 
-La fonction intégrale ``∫(indice,exposant) \int/``
+Effectivement ici je copie Typst mais ce n'est pas par manque d'idée, c'est que d'une part cela s'adapte à ma grammaire, mais qu'en plus ce sera ça de moins à apprendre pour ceux qui utilisent déjà Typst.
+
+Le in : ``$in$/`` devient ∈
+La fonction intégrale ``∫(indice,exposant) en tapant $int$/``
+Pareil pour ``$oint$/``
+Pour ``$iint$\`` ...
+Même ``$alpha$ ou $Alpha$
