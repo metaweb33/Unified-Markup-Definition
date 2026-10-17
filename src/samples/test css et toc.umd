@@ -1,11 +1,11 @@
-§§§[(>)'Arial'%22*4*3*6]{darkgrey}]
+§§§[<<(>)'Arial'%22*4*3*6]{darkgrey}]
 📄A4🚥%57🚦%170
 fr-Fr
 
 # = #[><'Arial'%40*5*8]{red}_~_{blue}**
-#2 = #2[>>>><'Arial'%35*5*8№I- ]{purple}___{purple}**
-#3 = #4[>>>>++'Arial'%30*5*8№A- ]{green}__{green}**
-#4 = #3[>>>>++'Arial'%25*4*5№1) ]{black}_{black}
+#2 = #2[>>>><'Arial'%35*5*8№"I-"]{purple}___{purple}**
+#3 = #4[>>>>++'Arial'%30*5*8№"A-"]{green}__{green}**
+#4 = #3[>>>>++'Arial'%25*4*5№"1)" ]{black}_{black}
 ▷ = ▷[><'Arial'%22]{blue}**
 ▷2 = ▷2[<<>'Arial'%22]{purple}**
 ▷3 = ▷4[<<>>'Arial'%22]{green}**
@@ -20,7 +20,7 @@ _ =  {red}_
 /§§§
 
 ¥¥¥
-▷ Les balises de styles en cascade et Table les matières (*ToC)
+▷ Les balises de styles en cascade et Table les matières (*ToC/*)
 ▷2 Introduction
 ▷2 La balise de styles en cascade et de propriétés du document
 ▷3 Ouverture et style du texte sur première ligne.
@@ -29,36 +29,46 @@ _ =  {red}_
 ▷
 /¥¥¥
 
-# Les balises de styles en cascade et Table les matières (*ToC)
+# Les balises de styles en cascade et Table les matières (*ToC/*)
 
 #2 Introduction
-Le fait de définir un style ou de garder le style par défaut, ou prendre un style de thème n'ont pas les mêmes portées. En effet les deux dernier peuvent évoluer alors que le premier est gravé dans le fichier.
-Ici plus besoin de retaper les propriétés du titre h1 ni h2 ou h3 et h4 et donc vous n'avez qu'à mettre la balise et faire une espace et le texte va prendre la police définie, le style et les décorations voulu.
-Et pour la seconde balisevous n'êtes pas obligé de l'utiliser, mais à l'endroit ou vous la mettez, la *ToC* générale se mettra. Le plus logique étant avant le titre ou en fin de document. Cependant, je prévois des toc partielles en cas de documentation complexe. et aussi la possiblilité de leur donner quelques propriétés pour mieux les faire ressortir.
 
-#2 La balise de styles en cascade et de propriétés du document
+Le fait de définir un style ou de garder le style par défaut, ou prendre un style de thème n'ont pas les mêmes portées. En effet les deux derniers peuvent évoluer alors que le premier est "inscrit" dans le fichier source.
+Ici plus besoin de retaper les propriétés du titre h1 ni h2 ou h3 et h4 qui sont inscrite dans la balise ``§§§/``et donc vous n'avez qu'à mettre une balise h et faire un espace, le texte va prendre la police définie, le style et les décorations voulus ainsi que la numérotation définie.
+Et pour la seconde balise ```¥¥¥/`, vous n'êtes pas obligé de l'utiliser, mais à l'endroit ou vous la mettez, la *ToC* générale se mettra. Le plus logique étant avant le titre ou en fin de document. Cependant, je prévois des ToC partielles en cas de documentation complexe. et aussi la possiblilité de leur donner quelques propriétés pour mieux les faire ressortir.
+
+#2 La balise de styles en cascade et de propriétés du document.
 
 #3 Ouverture et style du texte sur première ligne.
 
-Ce paragraphe commence par une tabulation, juste avant "Ce" car juste après l'ouverture `§§§` et l'ouverture des paramètres `[/` j'ai mis la balise Tabulation `(>)/`impliquant que chaque paragraphe de texte normal va commencer par un tabulation. Si vous voulez commence un paragraphe sans cette tabulation, il ne suffira pas de la faire sauter en appuyant sur backspace, car elle n'est pas dans le texte rendu, il faudra insérer une balise `(⟵)/` entre parenthèse avant de taper votre texte.
-Dans l'éditeur WYSIWYG, cette balise s'ajoutera automatiquement en appuyant sur la touche backspace de votre clavier.
-S'il y avait eu deux espaces `(++)/` ou trois espaces `(+++)/` ou autre un seul backspace aurait aussi suffit car elle efface toute la parenthèce.
-Cette balise fonctionne comme le décalage , on peut l'utiliser dans le texte mais autant faire directement une tabulation ou une espace seul les décalage plus fin en demi-points vont nécessiter sa présence. 
-Si vous voulez plusieurs paragraphe avec un décalage différent, il faudra utiliser la balise `§§/`
-- Pour un décalage plus grand `§§[>++]/` par exemple car la balise va recaler le texte sur la marge et tapez votre texte à la ligne. Pour fermer la balise `/§§/` doit-être mise seule sur la dernière ligne.
-- Pour un décalage plus petit `§§[++]/` ici pas de balise backspace à utiliser.
-- Pour modifier la marge de droite ajouté à la suite soit de tabulation `</` soit des espaces - soit une valeur en demi-points exemple `-%51/` ou une combinaison selon la marge virtuelle que vous désirez
+Ce paragraphe commence par une tabulation, juste avant "Ce" car juste après l'ouverture `§§§` et l'ouverture des paramètres ``[/`` j'ai mis la balise Tabulation ``(>)/``impliquant que chaque paragraphe de texte normal va commencer par un tabulation. 
+
+Si vous voulez commence un paragraphe sans cette tabulation,comme c'est le cas ici, il ne suffira pas de la faire sauter en appuyant sur backspace, car elle n'est pas dans le texte rendu, il faudra insérer une balise backspace ``/`` (U+008) (cette balise est invisible dans le rendu mais visible dans la source, sauf présentée dans balise de code \`\` comme c'est le cas ici). L'icône ``(⟵)/`` dans la barre d'édition de l'éditeur (entre parenthès) permet aussi de l'insérer avant de taper votre texte et ou mettre un espacement différent avant soit avec espace ou tabulation soit en rentrant l'écartement voulu entre parenthèses mais dans la source ou .
+Dans l'éditeur WYSIWYG, cette balise s'ajoutera automatiquement en appuyant sur la touche backspace de votre clavier s'il y a un décalage de debut de paragraphe dans les paramètre du texte "Normal" défini sur la même ligne que la balise ``§§§/``.
+
+S'il y avait eu deux espaces ``(++)/`` ou 30 demi-points ``(%30)/`` ou 2 centimètres `(2cm)/` ou un pouce ``(1in)/`` ou 150 TWIP ``(‰150)/``  ou autre un seul backspace ``/`` aurait aussi suffit car elle efface toute la parenthèse et son contenu.
+
+Précision supplémentaire, en doublant la balise backspace (U+008 ici visible grace à la balise de code)(suivi d'un espace) ``/`` , on obtiendra un rendu comme si on n'avait pas changé de ligne.
+Pour obtenir l'effet inverse, en tapant ``¦/`` (U+00A6)à la fin d'une phrase donc après un point cela engendre un changement de ligne dans le rendu. Cependant, on reste dans le même paragraghe (ligne) dans la source. Ces deux balises seront utiliser pour aligner les traductions (dans l'ubk)  afin que le traducteur soit libre d'aérer ou de condenser sa traduction, sans décaler l'alignement des textes originaux et traduit. 
+La double balise ``/`` enlève le décalage potentiel et indique au moteur de rendu qu'il faut qu'il fasse comme s'il continuait la ligne (paragraphe) précédante *a contrario/* du texte original.
+La balise ``¦/`` donnera l'ordre au moteur de rendu d'aller à la ligne et de mettre le décalage potentiellement programmé, comme s'il avait changé de paragraphe. _Attention/_ : elle coupera aussi le style et les décorations comme un véritable retour à la ligne et il faudra donc les remettre si on veut qu'ils continuent.
+
+Cette balise ``(>)/`` fonctionne comme le décalage , on peut l'utiliser dans le texte mais autant faire directement une tabulation ou une espace seul les décalage plus fin en demi-points vont nécessiter sa présence. 
+Si vous voulez plusieurs paragraphe avec un décalage différent, il faudra utiliser la balise ``§§/``
+- Pour un décalage plus grand ``§§[>++]/`` par exemple car la balise va recaler le texte sur la marge et tapez votre texte à la ligne. Pour fermer la balise ``/§§/`` doit-être mise seule sur la dernière ligne.
+- Pour un décalage plus petit ``§§[++]/`` ici pas de balise backspace à utiliser.
+- Pour modifier la marge de droite ajouté à la suite soit de tabulation ``</`` soit des espaces - soit une valeur en demi-points exemple ``-%51/`` ou une combinaison selon la marge virtuelle que vous désirez.
 
 La police que l'on veut utiliser est entre apostraophes ici 'Arial' mais cela aurait pu être 'Bookman Old Style' 
-Collé à l'apostraophe `%22/` la taille en demi-point (donc 11 points)
+Collé à l'apostraophe ``%22/`` la taille en demi-point (donc 11 points)
 puis toujours collé les valeur de graisse :
-Si vous ne mettez qu'un seule valeur `*5/` cela signifie que avez choisir une graisse moyenne pour l'ecriture normal et pour l'écriture en emphase et que la valeur du gras sera `*7/`
-Les valeur de graisse par défaut étant `*4*4*7/` :
+Si vous ne mettez qu'un seule valeur ``*5/`` cela signifie que avez choisir une graisse moyenne pour l'ecriture normal et pour l'écriture en emphase et que la valeur du gras sera ``*7/``
+Les valeur de graisse par défaut étant ``*4*4*7/`` :
 
 Échelle numérique OpenType (100–900) 
 
-|100 | Très clair / Thin | devient *1 |
-|200 | Extra-clair / Extra-Light*2|
+|100 | Très clair / Thin | devient \*1 |
+|200 | Extra-clair / Extra-Light|*2|
 |300 | Clair / Light | \*3 |
 |400 | Normal / Regular | \*4 |
 |500 | Moyen / Medium | \*5 |
@@ -69,12 +79,12 @@ Les valeur de graisse par défaut étant `*4*4*7/` :
 
     _{red}Attention/_ : certaine police ne supporte pas bien ce système
 
-Si vous mettez deux valeurs `*5*9/` : Normal et italique prennet un graise de 500 et gras devient très gras avec une graisse de 900. comme par exemple le 'Arial Black' sauf que si vous choisissez 'Arial Black' normal italique et gras seront tous déjà `*9/`  soit 900 qui est la valeur maximum cela équivaut à écrire  `'Arial'*9*9/`.
+Si vous mettez deux valeurs ``*5*9/`` : Normal et italique prennet un graise de 500 et gras devient très gras avec une graisse de 900. comme par exemple le 'Arial Black' sauf que si vous choisissez 'Arial Black' normal italique et gras seront tous déjà ``*9/``  soit 900 qui est la valeur maximum cela équivaut à écrire  ``'Arial'*9*9/``.
 En revanche rien ne vous empêche de choisir de faire ne sort d'inverser la donne et même le gras moins gras que le Normal. C'est un style comme un autre.
 
-Si vous mettez les trois valeurs cela va soit pour être complet soit parce que vous voulez changer la grasse de l'emphase pour qu'elle soit plus ou moins grasse que la graisse de la normale : 
-`'Arial'*4*3*7/` : police Arial normal à 400 emphase 300 et gras 700
-ici : `'Arial'*4*3/` suffit car si vous ne précisez  que deux valeurs la première est la graisse de la police normale et la seconde celle de l'emphase et comme la valeur par défaut de la graisse de gras est dejà 700 pas besoin de préciser \*7
-Si vous ne précisez qu'une valeur, ce sera celle de la graisse normal et aussi celle de l'emphase `'Arial'*2/`signifiera `'Arial'*2*2*7/` et donc si vous ne voulez pas que la graisse de l'emphase soit impacter il faudra préciser la valeur par défaut : 
-`'Arial'*2*4/`
-`'Arial'*2/` signifie que vous voulez utiliser la police Arial Extra-claire et dans les traitement de texte malgré le fait que vous utiliser la police extra-claire le gras reste à 700 \*7 
+Si vous mettez les trois valeurs cela va soit pour être complet soit parce que vous voulez changer la graisse de l'emphase pour qu'elle soit plus ou moins grasse que la graisse de la normale : 
+``'Arial'*4*3*7/`` : police Arial normal à 400 emphase 300 et gras 700
+ici : ``'Arial'*4*3/`` suffit car si vous ne précisez  que deux valeurs la première est la graisse de la police normale et la seconde celle de l'emphase et comme la valeur par défaut de la graisse de gras est dejà 700 pas besoin de préciser \*7
+Si vous ne précisez qu'une valeur, ce sera celle de la graisse normal et aussi celle de l'emphase ``'Arial'*2/`` signifiera ``'Arial'*2*2*7/`` et donc si vous ne voulez pas que la graisse de l'emphase soit impacter, il faudra préciser la valeur par défaut : 
+``'Arial'*2*4/``
+``'Arial'*2/`` signifie que vous voulez utiliser la police Arial Extra-claire et dans le traitement de texte malgré le fait que vous utilisez la police extra-claire le gras reste à 700 \*7 .
