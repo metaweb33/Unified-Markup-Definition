@@ -8,7 +8,7 @@ Toujours avant le style ``{color}*emphase/*/`` , ``{color}**gras/**/`` ,  ``{col
 Pour la suite je vais alterné code inline UMD (balise visible et texte en mono) et le rendu que vous aurez si vous regardez ce document et non la source.
 
 - Une couleur en anglais pour les couleurs nommables comme pour le html :
-``{red}texte en rouge&& texte couleur par défaut (noir ici)
+``{red}texte en rouge&& texte couleur par défaut (noir ici,héritée de défaut car aucun contexte de couleur de texte plus proche)
 {red}texte en rouge&& texte couleur par défaut (noir ici)
 
 - Une couleur en RGB comme en html :
@@ -16,9 +16,10 @@ Pour la suite je vais alterné code inline UMD (balise visible et texte en mono)
 {#ff0000}Texte en rouge&& texte couleur par défaut (noir)
 
 - Une couleur en RGBA comme en html :
-``{#ff0000ff}Texte en rouge&&
-{#ff0000ff}Texte en rouge&&
-La balise ``&&/`` arrête la couleur du texte seulement.
+``{#ff0000ff}Texte en rouge&& texte couleur par défaut (noir)
+{#ff0000ff}Texte en rouge&& texte couleur par défaut (noir)
+
+La balise ``&&/`` arrête la couleur du texte seulement mais pas son style gras et ou en emphase.
 
 La balise ``{/}/`` arrête le style et les décorations du texte ainsi que leurs couleurs:
 ``__{blue}**Texte gras bleu avec double soulignement{/} texte par défaut ou hérité en couleur par défaut ou héritée.
@@ -29,18 +30,18 @@ La balise ``/&/`` arrête le style du texte ainsi que sa couleur mais pas les d�
 __{blue}**Texte gras bleu avec double soulignement/& texte par défaut "couleur par défaut ou héritée toujours souligné en couleur héritée.
 
 Le retour à la ligne (hors balise de style local) arrête aussi la couleur :
-``__{blue}**Texte gras bleu avec double soulignement
-texte par défaut en couleur par défaut suite à retour à la ligne.
+``__{blue}**Texte gras bleu avec double soulignement couleur pas défaut.
+texte par défaut en couleur par défaut suite à retour à la ligne et non-souligné.
 __{blue}**Texte gras bleu avec double soulignement
-texte par défaut en couleur par défaut suite à retour à la ligne.
+texte par défaut en couleur par défaut suite à retour à la ligne et non-souligné.
 
 
 
-``{blue}bleu {red}rouge&& bleu à nouveau&& couleur du parent héritéé du bloc le plus proche incluant le texte.
-{blue}bleu {red}rouge&& bleu à nouveau&& couleur du parent héritéé du bloc le plus proche incluant le texte.
+``{blue}Texte bleu {red}texte rouge&& texte bleu à nouveau&& texte en couleur du parent héritéé du bloc le plus proche incluant le texte (ici noir défaut).
+{blue}Texte bleu {red}texte rouge&& texte bleu à nouveau&& texte en couleur du parent héritéé du bloc le plus proche incluant le texte (ici noir défaut).
 
-``{red}_Texte souligné en rouge/_ suffit fermeture du soulignement et de sa couleur.
-{red}_Texte souligné en rouge/_ suffit fermeture du soulignement et de sa couleur.
+``{red}_Texte (défaut) souligné en rouge/_ suffit fermeture du soulignement et de sa couleur.
+{red}_Texte (défaut) souligné en rouge/_ suffit fermeture du soulignement et de sa couleur.
 
 ``{blue}~~Texte barré en bleu/~~ fermeture du barré et de sa couleur.
 {blue}~~Texte barré en bleu/~~ fermeture du barré et de sa couleur.
@@ -74,7 +75,7 @@ Sinon voilà ce qui va arriver
 ``{red}**_Texte/`` donnerait {red}Texte&& : en rouge non-souligné car \_ est après la balise de style et n'est pas échappé, il disparaît donc.
 
 +++
-Ce point est à vérifier si on peut faire en sorte quand inversant style du texte et décoration on puisse, en mettant une couleur devant le style du texte on colore les décoration après de la même couleur. Mais à mon avis ce mettre une autre manière de réaliser ce combo, par exemple mettant les décorations dans une autre paire d'accolade, ou faire une balise ``&{color;décos et style}/``. (ce paragraphe tient de l'hypothèse et est voué à être soit validé soit supprimé si cela n'apporte rien de plus)
+Ce point est à vérifier si on peut faire en sorte quand inversant style du texte et décoration on puisse, en mettant une couleur devant le style du texte on colore les décorations après de la même couleur. Mais, à mon avis, une autre manière de réaliser ce combo, par exemple mettant les décorations dans une autre paire d'accolade, ou faire une balise ``&{color;décos et style}/``. (ce paragraphe tient de l'hypothèse et est voué à être soit validé soit supprimé si cela n'apporte rien de plus)
 +++
 
 #3 Surlignage en couleur
