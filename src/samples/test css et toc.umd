@@ -1,4 +1,4 @@
-§§§[<<(>)'Arial'%22*4*3*6]{darkgrey}]
+§§§[(>)'Arial'%22*4*3*6]{darkgrey}
 📄A4🚥%57🚦%170
 fr-Fr
 
@@ -29,34 +29,62 @@ _ =  {red}_
 ▷
 /¥¥¥
 
-# Les balises de styles en cascade et Table les matières (*ToC/*)
-
 #2 Introduction
 
-Le fait de définir un style ou de garder le style par défaut, ou prendre un style de thème n'ont pas les mêmes portées. En effet les deux derniers peuvent évoluer alors que le premier est "inscrit" dans le fichier source.
-Ici plus besoin de retaper les propriétés du titre h1 ni h2 ou h3 et h4 qui sont inscrite dans la balise ``§§§/``et donc vous n'avez qu'à mettre une balise h et faire un espace, le texte va prendre la police définie, le style et les décorations voulus ainsi que la numérotation définie.
-Et pour la seconde balise ```¥¥¥/`, vous n'êtes pas obligé de l'utiliser, mais à l'endroit ou vous la mettez, la *ToC* générale se mettra. Le plus logique étant avant le titre ou en fin de document. Cependant, je prévois des ToC partielles en cas de documentation complexe. et aussi la possiblilité de leur donner quelques propriétés pour mieux les faire ressortir.
+Le fait de définir un style, de garder le style par défaut ou de prendre un style de thème ont différentes portées. En effet les deux derniers peuvent évoluer alors que le premier est "inscrit" dans le fichier source.
+Ici plus besoin de retaper les propriétés du titre h1 ni h2 ou h3 et h4 qui sont inscrites dans la balise ``§§§/``et donc vous n'avez qu'à mettre une balise h et faire un espace, le texte va prendre la police définie, le style et les décorations voulus ainsi que la numérotation définie.
+
+Pour la seconde balise ```¥¥¥/`, vous n'êtes pas obligé de l'utiliser, mais à l'endroit où vous la mettez, la *ToC* générale se mettra. Le plus logique étant avant le titre ou en fin de document. Cependant, je prévois des ToC partielles en cas de documentation complexe, ainsi que la possibilité de leur donner quelques propriétés pour mieux les faire ressortir.
 
 #2 La balise de styles en cascade et de propriétés du document.
 
 #3 Ouverture et style du texte sur première ligne.
 
-Ce paragraphe commence par une tabulation, juste avant "Ce" car juste après l'ouverture `§§§` et l'ouverture des paramètres ``[/`` j'ai mis la balise Tabulation ``(>)/``impliquant que chaque paragraphe de texte normal va commencer par un tabulation. 
+Ce paragraphe commence par une tabulation, juste avant "Ce" car juste après l'ouverture `§§§` et l'ouverture des paramètres ``[/`` j'ai mis la balise Tabulation ``(>)/``impliquant que chaque paragraphe de texte normal va commencer par une tabulation.
+Ici, le texte est aligné à gauche par défaut donc pas besoin de répéter la balise d'alignement gauche ``<</`` d'autant plus qu'il n'y a pas de décalage d'alignement de paragraphe comme par défaut : on aligne le texte sur la marge de gauche en LTR et sur la marge de droite en RTL, ce réglage est valable pour tous les headers. Donc on doit préciser l'alignement s'il n'est pas par défaut et quand on applique un décalage du paragraphe entier. 
 
-Si vous voulez commence un paragraphe sans cette tabulation,comme c'est le cas ici, il ne suffira pas de la faire sauter en appuyant sur backspace, car elle n'est pas dans le texte rendu, il faudra insérer une balise backspace ``/`` (U+008) (cette balise est invisible dans le rendu mais visible dans la source, sauf présentée dans balise de code \`\` comme c'est le cas ici). L'icône ``(⟵)/`` dans la barre d'édition de l'éditeur (entre parenthès) permet aussi de l'insérer avant de taper votre texte et ou mettre un espacement différent avant soit avec espace ou tabulation soit en rentrant l'écartement voulu entre parenthèses mais dans la source ou .
-Dans l'éditeur WYSIWYG, cette balise s'ajoutera automatiquement en appuyant sur la touche backspace de votre clavier s'il y a un décalage de debut de paragraphe dans les paramètre du texte "Normal" défini sur la même ligne que la balise ``§§§/``.
+Si vous voulez commencer un paragraphe sans cette tabulation, comme c'est le cas ici, il ne suffira pas de la faire sauter en appuyant sur Backspace, car elle n'est pas dans le texte rendu, il faudra insérer une balise backspace ``/`` (U+008) (cette balise est invisible dans le rendu mais visible dans la source, sauf présentée dans balise de code \`\` comme c'est le cas ici). L'icône ``(⟵)/`` dans la barre d'édition de l'éditeur (entre parenthèses) permet aussi de l'insérer avant de taper votre texte et/ou de mettre un espacement différent avant, soit avec espace ou tabulation, soit en rentrant l'écartement voulu entre parenthèses, mais dans la source.
+Dans l'éditeur WYSIWYG, cette balise s'ajoutera automatiquement en appuyant sur la touche backspace de votre clavier s'il y a un décalage de début de paragraphe dans les paramètres du texte "Normal" définis sur la même ligne que la balise ``§§§/``.
 
-S'il y avait eu deux espaces ``(++)/`` ou 30 demi-points ``(%30)/`` ou 2 centimètres `(2cm)/` ou un pouce ``(1in)/`` ou 150 TWIP ``(‰150)/``  ou autre un seul backspace ``/`` aurait aussi suffit car elle efface toute la parenthèse et son contenu.
+S'il y avait eu deux espaces ``(++)/`` ou 30 demi-points ``(%30)/`` ou 2 centimètres `(2cm)/` ou un pouce ``(1in)/`` ou 150 TWIP ``(‰150)/``  ou autre, un seul backspace ``/`` aurait aussi suffi car elle efface toute la parenthèse et son contenu.
 
-Précision supplémentaire, en doublant la balise backspace (U+008 ici visible grace à la balise de code)(suivi d'un espace) ``/`` , on obtiendra un rendu comme si on n'avait pas changé de ligne.
-Pour obtenir l'effet inverse, en tapant ``¦/`` (U+00A6)à la fin d'une phrase donc après un point cela engendre un changement de ligne dans le rendu. Cependant, on reste dans le même paragraghe (ligne) dans la source. Ces deux balises seront utiliser pour aligner les traductions (dans l'ubk)  afin que le traducteur soit libre d'aérer ou de condenser sa traduction, sans décaler l'alignement des textes originaux et traduit. 
-La double balise ``/`` enlève le décalage potentiel et indique au moteur de rendu qu'il faut qu'il fasse comme s'il continuait la ligne (paragraphe) précédante *a contrario/* du texte original.
+Précision supplémentaire : en doublant la balise backspace (U+008 ici visible grâce à la balise de code suivi d'un espace) ``/`` , on obtiendra un rendu comme si on n'avait pas changé de ligne.
+Afin d'obtenir l'effet inverse, en tapant ``¦/`` (U+00A6) à la fin d'une phrase, donc après un point, cela engendre un changement de ligne dans le rendu. Cependant, on reste dans le même paragraphe (ligne) dans la source. Ces deux balises seront utilisées pour aligner les traductions (dans l'ubk)  afin que le traducteur soit libre d'aérer ou de condenser sa traduction, sans décaler l'alignement des textes originaux et traduit. 
+La double balise ``/`` enlève le décalage potentiel et indique au moteur de rendu qu'il faut qu'il fasse comme s'il continuait la ligne (paragraphe) précédente *a contrario/* du texte original.
 La balise ``¦/`` donnera l'ordre au moteur de rendu d'aller à la ligne et de mettre le décalage potentiellement programmé, comme s'il avait changé de paragraphe. _Attention/_ : elle coupera aussi le style et les décorations comme un véritable retour à la ligne et il faudra donc les remettre si on veut qu'ils continuent.
 
-Cette balise ``(>)/`` fonctionne comme le décalage , on peut l'utiliser dans le texte mais autant faire directement une tabulation ou une espace seul les décalage plus fin en demi-points vont nécessiter sa présence. 
-Si vous voulez plusieurs paragraphe avec un décalage différent, il faudra utiliser la balise ``§§/``
-- Pour un décalage plus grand ``§§[>++]/`` par exemple car la balise va recaler le texte sur la marge et tapez votre texte à la ligne. Pour fermer la balise ``/§§/`` doit-être mise seule sur la dernière ligne.
-- Pour un décalage plus petit ``§§[++]/`` ici pas de balise backspace à utiliser.
+Cette balise ``(décalage de premier mot)/`` fonctionne comme le décalage de paragraphe, on peut l'utiliser dans le texte, mais autant faire directement une tabulation ou un espace. Seuls les décalages plus fins en demi-points (ou cm ou pouce ou TWIP ...) vont nécessiter sa présence. 
+Elle n'a rien à voir avec les décalages de texte engendrés après l'alignement qui ne sont pas entre parenthèses car eux décalent aussi tout le paragraphe, et non seulement le premier mot. Cependant, il se cumule : 
+``§§[<<>(++)...]/`` :
+- Alignement marge de gauche ``<</``
+- Décalage du paragraphe d'une tabulation vers la droite ``>/``
+- Décalage de la première ligne du paragraphe de deux espaces ``(++)/``
+- ``.../`` d'autres paramètres potentiels.
+
+Un backspace ``/`` n'éliminera que les deux espaces ``(++)/``
+Deux backspace ``/`` collera dans le rendu le début du nouveau paragraphe à la fin du paragraphe précédent, d'où la nécessité de mettre un espace, soit à la fin du paragraphe précédent, soit au début du suivant (juste après les backspace). Sinon on aura "fin.début" dans le rendu.
+
+Si vous voulez plusieurs paragraphes avec un décalage différent, il faudra utiliser la balise ``§§/``
+- Pour un décalage plus petit ``§§[(++)]/`` par exemple, car la balise va recaler le texte sur la marge et tapez votre texte à la ligne. Pour fermer la balise ``/§§/`` doit-être mise seule sur la dernière ligne.
+- Pour un décalage de paragraphe ``§§[<<++]/`` ici pas de balise backspace à utiliser.
+Il suffira de faire un nouvelle balise ``§§[<<]/`` pour enlever le décalage du paragraphe suivant et le raligner sur la marge.
+Attention, si vous n'avez pas fermé le décalage précédent, en fermant celui-ci vous reprenez le décalage avec les deux espaces :
+
+§§[(++)]
+Ce texte commence à deux espaces de la marge de gauche en LTR. Mais il s'enroule au niveau de la marge de gauche tant qu'il continue.
+§§[<<++]
+Celui-ci aussi commence à deux espaces de la marge de gauche en LTR, mais il s'enroule à deux espaces de la marge au retour à la ligne. Tout le paragraphe s'aligne à deux espaces de la marge, contrairement au texte du paragraphe précédent.
+§§[<<]
+Celui-ci commence et s'enroule au niveau de la marge de gauche, il n'y a aucun décalage à moins de rajouter manuellement une tabulation ou deux espaces.
+/§§
+Ici on recommence à écrire à deux espaces de la marge de gauche et/ou s'enroule aussi à deux espaces de la marge, car on n'a pas fermé la balise locale précédente.
+/§§
+Ce paragraphe commence par deux espaces aussi, mais s'enroule sur la marge de gauche parce qu'on vient de prendre les propriétés de la première balise : ``§§[(++)]/``
+/§§
+Ici nous dépendons des propriétés UCSS de la première ligne du document :
+``§§§[(>)'Arial'%22*4*3*6]{darkgrey}/``
+Ces paragraphes commencent par une tabulation de 4 espaces (2 em), il est écrit en Arial gris foncé en 11pt normal en graisse de 400 ; l'*italique est en graisse de 300/* et le **gras en graisse de 600/**.
+
 - Pour modifier la marge de droite ajouté à la suite soit de tabulation ``</`` soit des espaces - soit une valeur en demi-points exemple ``-%51/`` ou une combinaison selon la marge virtuelle que vous désirez.
 
 La police que l'on veut utiliser est entre apostraophes ici 'Arial' mais cela aurait pu être 'Bookman Old Style' 
